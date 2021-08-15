@@ -1,0 +1,36 @@
+<div class="todos">
+  <div
+    *ngFor="let todo of todos; let i = index"
+    class="todo {{ todo.completed ? 'done' : '' }}"
+  >
+    <div class="id">{{ i }}</div>
+    <div class="content" (click)="toggleDone(i)">{{ todo.content }}</div>
+    <button
+      mat-raised-button
+      color="primary"
+      class="delete todo-submit"
+      (click)="deleteTodo(i)"
+    >
+      Remove
+    </button>
+  </div>
+</div>
+<form [formGroup]="todoForm" (submit)="addTodo()">
+  <input
+    type="text"
+    name="inputTodo"
+    placeholder="Add Todo..."
+    class="todo-input"
+    [formControlName]="'inputTodo'"
+  />
+  <button
+    mat-raised-button
+    type="submit"
+    value="Add Todo"
+    color="primary"
+    class="todo-submit"
+    [disabled]="todoForm.invalid"
+  >
+    Add Todo
+  </button>
+</form>
