@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { Todo } from '../../models/Todo';
+import { TodoList } from 'src/app/models/TodoList';
 
 @Component({
   selector: 'app-todo',
@@ -18,8 +19,8 @@ export class TodoComponent implements OnInit {
       inputTodo: [null, Validators.required],
     });
   }
-
   public todos: Todo[];
+  @Input() selectedList: TodoList = { title: 'List One', todos: [] };
 
   ngOnInit(): void {}
 

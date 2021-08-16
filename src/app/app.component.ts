@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TodoList } from './models/TodoList';
+import { Todo } from './models/Todo';
 
 @Component({
   selector: 'app-root',
@@ -12,6 +13,10 @@ export class AppComponent implements OnInit {
   constructor() {}
 
   public todoList: TodoList[] = [];
+  public selectedList: TodoList = {
+    title: '',
+    todos: [],
+  };
 
   ngOnInit() {}
 }

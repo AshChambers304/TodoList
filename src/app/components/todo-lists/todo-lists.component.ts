@@ -1,5 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { TodoList } from '../../models/TodoList';
+import { Todo } from 'src/app/models/Todo';
 
 @Component({
   selector: 'app-todo-lists',
@@ -11,10 +12,5 @@ export class TodoListsComponent implements OnInit {
 
   @Input() todoList: TodoList[] = [];
 
-  ngOnInit(): void {
-    this.todoList = [
-      { title: 'One', todos: [{ content: 'Content', completed: false }] },
-      { title: 'two', todos: [{ content: 'Content2', completed: true }] },
-    ];
-  }
+  ngOnInit(): void {}
 }

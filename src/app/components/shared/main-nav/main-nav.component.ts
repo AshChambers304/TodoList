@@ -18,6 +18,13 @@ export class MainNavComponent {
     );
 
   @Input() todoList: TodoList[] = [];
+  @Input() selectedList: TodoList = {
+    title: 'ListOne',
+    todos: [
+      { content: 'Test', completed: true },
+      { content: 'Test2', completed: false },
+    ],
+  };
 
   constructor(private breakpointObserver: BreakpointObserver) {}
 }

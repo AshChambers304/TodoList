@@ -1,16 +1,8 @@
 <div class="todos">
-  <div
-    *ngFor="let todo of todos; let i = index"
-    class="todo {{ todo.completed ? 'done' : '' }}"
-  >
-    <div class="id">{{ i }}</div>
-    <div class="content" (click)="toggleDone(i)">{{ todo.content }}</div>
-    <button
-      mat-raised-button
-      color="primary"
-      class="delete todo-submit"
-      (click)="deleteTodo(i)"
-    >
+  <h1>{{ selectedList.title }}</h1>
+  <div *ngFor="let selectedList of selectedList.todos; let i = index">
+    <div class="content">{{ selectedList.content }}</div>
+    <button mat-raised-button color="primary" class="delete todo-submit">
       Remove
     </button>
   </div>
