@@ -1,1 +1,5 @@
-<p>todo-lists works!</p>
+<div class="todo-lists">
+  <div *ngFor="let todoList of todoList; let i = index">
+    <p>{{ todoList.title }}</p>
+  </div>
+</div>

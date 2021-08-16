@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
-import { AppMaterialModule } from 'src/app/app.material/app.material.module';
+import { TodoList } from 'src/app/models/TodoList';
 
 @Component({
   selector: 'app-main-nav',
@@ -16,6 +16,8 @@ export class MainNavComponent {
       map((result) => result.matches),
       shareReplay()
     );
+
+  @Input() todoList: TodoList[] = [];
 
   constructor(private breakpointObserver: BreakpointObserver) {}
 }
