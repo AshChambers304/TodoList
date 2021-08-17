@@ -18,10 +18,7 @@ export class MainNavComponent {
     );
 
   public todoLists: TodoList[] = [];
-  public selectedList: TodoList = {
-    title: '',
-    todos: [],
-  };
+  public selectedList: TodoList = null;
 
   constructor(private breakpointObserver: BreakpointObserver) {}
 

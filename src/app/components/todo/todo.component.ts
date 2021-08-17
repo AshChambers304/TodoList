@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { Todo } from '../../models/Todo';
@@ -13,13 +13,11 @@ export class TodoComponent implements OnInit {
   todoForm: FormGroup;
 
   constructor(private builder: FormBuilder) {
-    this.todos = [];
-
     this.todoForm = this.builder.group({
       inputTodo: [null, Validators.required],
     });
   }
-  public todos: Todo[];
+
   @Input() selectedList: TodoList = { title: '', todos: [] };
 
   ngOnInit(): void {}

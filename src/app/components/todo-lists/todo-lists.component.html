@@ -12,25 +12,25 @@
       Remove
     </button>
   </div>
-
-  <form [formGroup]="listForm" (submit)="addList()">
-    <input
-      type="text"
-      name="inputList"
-      placeholder="Add List..."
-      class="list-input"
-      [formControlName]="'inputList'"
-      maxlength="100"
-    />
-    <button
-      mat-raised-button
-      type="submit"
-      value="Add List"
-      color="primary"
-      class="todo-submit"
-      [disabled]="listForm.invalid"
-    >
-      Add Todo
-    </button>
-  </form>
 </div>
+
+<form [formGroup]="listForm" (submit)="addList()">
+  <input
+    type="text"
+    name="inputList"
+    placeholder="Add List..."
+    class="list-input"
+    [formControlName]="'inputList'"
+    maxlength="100"
+  />
+  <button
+    mat-raised-button
+    type="submit"
+    value="Add List"
+    color="primary"
+    class="todo-submit"
+    [disabled]="listForm.invalid"
+  >
+    Add List
+  </button>
+</form>

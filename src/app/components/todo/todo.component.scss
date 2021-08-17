@@ -3,12 +3,7 @@
   justify-content: space-evenly;
   align-items: center;
   padding: 10px 15px;
-  background-color: #fff;
   border-bottom: 1px solid #ddd;
-}
-
-.todo:nth-child(even) {
-  background-color: #eee;
 }
 
 .todo:last-of-type {

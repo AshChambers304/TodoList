@@ -17,7 +17,8 @@
     </button>
   </div>
 </div>
-<form [formGroup]="todoForm" (submit)="addTodo()">
+
+<form [formGroup]="todoForm" *ngIf="selectedList" (submit)="addTodo()">
   <input
     type="text"
     name="inputTodo"

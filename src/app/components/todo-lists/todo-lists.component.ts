@@ -17,7 +17,7 @@ export class TodoListsComponent implements OnInit {
   }
 
   @Input() todoLists: TodoList[] = [];
-  @Input() selectedList: TodoList = { title: '', todos: [] };
+  @Input() selectedList: TodoList = null;
   @Output() selectedListEmitter: EventEmitter<TodoList> =
     new EventEmitter<TodoList>();
 
@@ -35,6 +35,8 @@ export class TodoListsComponent implements OnInit {
       title: this.listForm.get('inputList')?.value,
       todos: [],
     });
+
+    this.listForm.setValue({ inputList: '' });
   }
 
   deleteList(id: number) {
