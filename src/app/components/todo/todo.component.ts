@@ -20,12 +20,12 @@ export class TodoComponent implements OnInit {
     });
   }
   public todos: Todo[];
-  @Input() selectedList: TodoList = { title: 'List One', todos: [] };
+  @Input() selectedList: TodoList = { title: '', todos: [] };
 
   ngOnInit(): void {}
 
   addTodo() {
-    this.todos.push({
+    this.selectedList.todos.push({
       content: this.todoForm.get('inputTodo')?.value,
       completed: false,
     });
@@ -34,11 +34,13 @@ export class TodoComponent implements OnInit {
   }
 
   deleteTodo(id: number) {
-    this.todos = this.todos.filter((v, i) => i !== id);
+    this.selectedList.todos = this.selectedList.todos.filter(
+      (v, i) => i !== id
+    );
   }
 
   toggleDone(id: number) {
-    this.todos.map((v, i) => {
+    this.selectedList.todos.map((v, i) => {
       if (i == id) v.completed = !v.completed;
     });
   }

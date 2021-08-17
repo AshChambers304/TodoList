@@ -1,0 +1,52 @@
+.list-title {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 15px;
+  flex: 1 1 100%;
+
+  :hover {
+    color: #673ab7;
+    cursor: pointer;
+  }
+}
+
+.list {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 10px 15px;
+  background-color: #fff;
+  border-bottom: 1px solid #ddd;
+}
+
+.list:nth-child(even) {
+  background-color: #eee;
+}
+
+.list:last-of-type {
+  border-bottom: 0;
+}
+
+.list-input {
+  display: block;
+  width: 10vw;
+  font-size: 20px;
+}
+
+.list-submit {
+  display: block;
+  width: 100%;
+  max-width: 200px;
+  margin: 15px auto;
+  padding: 10px 15px;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+}

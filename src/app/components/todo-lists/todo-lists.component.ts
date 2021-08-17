@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { TodoList } from '../../models/TodoList';
-import { Todo } from 'src/app/models/Todo';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-todo-lists',
@@ -8,9 +8,36 @@ import { Todo } from 'src/app/models/Todo';
   styleUrls: ['./todo-lists.component.scss'],
 })
 export class TodoListsComponent implements OnInit {
-  constructor() {}
+  listForm: FormGroup;
 
-  @Input() todoList: TodoList[] = [];
+  constructor(private builder: FormBuilder) {
+    this.listForm = this.builder.group({
+      inputList: [null, Validators.required],
+    });
+  }
+
+  @Input() todoLists: TodoList[] = [];
+  @Input() selectedList: TodoList = { title: '', todos: [] };
+  @Output() selectedListEmitter: EventEmitter<TodoList> =
+    new EventEmitter<TodoList>();
 
   ngOnInit(): void {}
+
+  setSelectedList(newSelectedList: TodoList) {
+    this.selectedList = newSelectedList;
+    console.log(this.selectedList);
+
+    this.selectedListEmitter.emit(newSelectedList);
+  }
+
+  addList() {
+    this.todoLists.push({
+      title: this.listForm.get('inputList')?.value,
+      todos: [],
+    });
+  }
+
+  deleteList(id: number) {
+    this.todoLists = this.todoLists.filter((v, i) => i !== id);
+  }
 }

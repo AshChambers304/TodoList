@@ -1,5 +1,36 @@
 <div class="todo-lists">
-  <div *ngFor="let todoList of todoList; let i = index">
-    <p>{{ todoList.title }}</p>
+  <div *ngFor="let todoList of todoLists; let i = index" class="list">
+    <span (click)="setSelectedList(todoList)">
+      {{ todoList.title }}
+    </span>
+    <button
+      mat-raised-button
+      color="primary"
+      class="delete todo-submit"
+      (click)="deleteList(i)"
+    >
+      Remove
+    </button>
   </div>
+
+  <form [formGroup]="listForm" (submit)="addList()">
+    <input
+      type="text"
+      name="inputList"
+      placeholder="Add List..."
+      class="list-input"
+      [formControlName]="'inputList'"
+      maxlength="100"
+    />
+    <button
+      mat-raised-button
+      type="submit"
+      value="Add List"
+      color="primary"
+      class="todo-submit"
+      [disabled]="listForm.invalid"
+    >
+      Add Todo
+    </button>
+  </form>
 </div>

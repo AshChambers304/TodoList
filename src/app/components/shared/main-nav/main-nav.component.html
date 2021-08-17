@@ -7,9 +7,12 @@
     [mode]="(isHandset$ | async) ? 'over' : 'side'"
     [opened]="(isHandset$ | async) === false"
   >
-    <mat-toolbar>Your Lists</mat-toolbar>
+    <mat-toolbar class="title">Your Lists</mat-toolbar>
     <mat-nav-list>
-      <app-todo-lists [todoList]="todoList"></app-todo-lists>
+      <app-todo-lists
+        [todoLists]="todoLists"
+        (selectedListEmitter)="handleSelectedListEmitter($event)"
+      ></app-todo-lists>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>

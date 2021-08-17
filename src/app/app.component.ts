@@ -12,11 +12,5 @@ export class AppComponent implements OnInit {
 
   constructor() {}
 
-  public todoList: TodoList[] = [];
-  public selectedList: TodoList = {
-    title: '',
-    todos: [],
-  };
-
   ngOnInit() {}
 }

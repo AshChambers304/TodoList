@@ -17,14 +17,16 @@ export class MainNavComponent {
       shareReplay()
     );
 
-  @Input() todoList: TodoList[] = [];
-  @Input() selectedList: TodoList = {
-    title: 'ListOne',
-    todos: [
-      { content: 'Test', completed: true },
-      { content: 'Test2', completed: false },
-    ],
+  public todoLists: TodoList[] = [];
+  public selectedList: TodoList = {
+    title: '',
+    todos: [],
   };
 
   constructor(private breakpointObserver: BreakpointObserver) {}
+
+  handleSelectedListEmitter(newSelectedList: TodoList) {
+    this.selectedList = newSelectedList;
+    console.log(newSelectedList, 'New-List');
+  }
 }
