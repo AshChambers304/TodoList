@@ -21,7 +21,7 @@ export class TodoComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  addTodo() {
+  addTodo(): void {
     if (this.selectedList) {
       this.selectedList.todos.push({
         content: this.todoForm.get('inputTodo')?.value,
@@ -32,7 +32,7 @@ export class TodoComponent implements OnInit {
     }
   }
 
-  deleteTodo(id: number) {
+  deleteTodo(id: number): void {
     if (this.selectedList) {
       this.selectedList.todos = this.selectedList.todos.filter(
         (v, i) => i !== id
@@ -40,7 +40,7 @@ export class TodoComponent implements OnInit {
     }
   }
 
-  toggleDone(id: number) {
+  toggleDone(id: number): void {
     if (this.selectedList) {
       this.selectedList.todos.map((v, i) => {
         if (i == id) v.completed = !v.completed;

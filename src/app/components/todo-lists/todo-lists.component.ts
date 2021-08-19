@@ -23,7 +23,7 @@ export class TodoListsComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  setSelectedList(newSelectedList: TodoList | null) {
+  setSelectedList(newSelectedList: TodoList | null): void {
     this.selectedList = newSelectedList;
     console.log(this.selectedList);
 

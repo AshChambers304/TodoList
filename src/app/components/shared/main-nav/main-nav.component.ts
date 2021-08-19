@@ -22,7 +22,7 @@ export class MainNavComponent {
 
   constructor(private breakpointObserver: BreakpointObserver) {}
 
-  handleSelectedListEmitter(newSelectedList: TodoList | null) {
+  handleSelectedListEmitter(newSelectedList: TodoList | null): void {
     this.selectedList = newSelectedList;
   }
 }
