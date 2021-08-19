@@ -18,12 +18,11 @@ export class MainNavComponent {
     );
 
   public todoLists: TodoList[] = [];
-  public selectedList: TodoList = null;
+  public selectedList: TodoList | null = null;
 
   constructor(private breakpointObserver: BreakpointObserver) {}
 
-  handleSelectedListEmitter(newSelectedList: TodoList) {
+  handleSelectedListEmitter(newSelectedList: TodoList | null) {
     this.selectedList = newSelectedList;
-    console.log(newSelectedList, 'New-List');
   }
 }

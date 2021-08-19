@@ -17,9 +17,9 @@ export class TodoListsComponent implements OnInit {
   }
 
   @Input() todoLists: TodoList[] = [];
-  @Input() selectedList: TodoList = null;
-  @Output() selectedListEmitter: EventEmitter<TodoList> =
-    new EventEmitter<TodoList>();
+  @Input() selectedList: TodoList | null = null;
+  @Output() selectedListEmitter: EventEmitter<TodoList | null> =
+    new EventEmitter<TodoList | null>();
 
   ngOnInit(): void {}
 
@@ -41,5 +41,11 @@ export class TodoListsComponent implements OnInit {
 
   deleteList(id: number) {
     this.todoLists = this.todoLists.filter((v, i) => i !== id);
+
+    this.selectedList = null;
+
+    console.log('todo-lists-comp: ' + this.selectedList);
+
+    this.selectedListEmitter.emit(this.selectedList);
   }
 }

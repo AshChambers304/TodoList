@@ -1,7 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
-import { Todo } from '../../models/Todo';
 import { TodoList } from 'src/app/models/TodoList';
 
 @Component({
@@ -18,28 +17,34 @@ export class TodoComponent implements OnInit {
     });
   }
 
-  @Input() selectedList: TodoList = { title: '', todos: [] };
+  @Input() selectedList: TodoList | null = null;
 
   ngOnInit(): void {}
 
   addTodo() {
-    this.selectedList.todos.push({
-      content: this.todoForm.get('inputTodo')?.value,
-      completed: false,
-    });
+    if (this.selectedList) {
+      this.selectedList.todos.push({
+        content: this.todoForm.get('inputTodo')?.value,
+        completed: false,
+      });
 
-    this.todoForm.setValue({ inputTodo: '' });
+      this.todoForm.setValue({ inputTodo: '' });
+    }
   }
 
   deleteTodo(id: number) {
-    this.selectedList.todos = this.selectedList.todos.filter(
-      (v, i) => i !== id
-    );
+    if (this.selectedList != null) {
+      this.selectedList.todos = this.selectedList.todos.filter(
+        (v, i) => i !== id
+      );
+    }
   }
 
   toggleDone(id: number) {
-    this.selectedList.todos.map((v, i) => {
-      if (i == id) v.completed = !v.completed;
-    });
+    if (this.selectedList != null) {
+      this.selectedList.todos.map((v, i) => {
+        if (i == id) v.completed = !v.completed;
+      });
+    }
   }
 }
