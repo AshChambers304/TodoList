@@ -23,14 +23,14 @@ export class TodoListsComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  setSelectedList(newSelectedList: TodoList) {
+  setSelectedList(newSelectedList: TodoList | null) {
     this.selectedList = newSelectedList;
     console.log(this.selectedList);
 
     this.selectedListEmitter.emit(newSelectedList);
   }
 
-  addList() {
+  addList(): void {
     this.todoLists.push({
       title: this.listForm.get('inputList')?.value,
       todos: [],
@@ -39,13 +39,13 @@ export class TodoListsComponent implements OnInit {
     this.listForm.setValue({ inputList: '' });
   }
 
-  deleteList(id: number) {
+  deleteList(id: number): void {
     this.todoLists = this.todoLists.filter((v, i) => i !== id);
 
     this.selectedList = null;
 
     console.log('todo-lists-comp: ' + this.selectedList);
 
-    this.selectedListEmitter.emit(this.selectedList);
+    this.setSelectedList(null);
   }
 }

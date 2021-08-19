@@ -33,7 +33,7 @@ export class TodoComponent implements OnInit {
   }
 
   deleteTodo(id: number) {
-    if (this.selectedList != null) {
+    if (this.selectedList) {
       this.selectedList.todos = this.selectedList.todos.filter(
         (v, i) => i !== id
       );
@@ -41,7 +41,7 @@ export class TodoComponent implements OnInit {
   }
 
   toggleDone(id: number) {
-    if (this.selectedList != null) {
+    if (this.selectedList) {
       this.selectedList.todos.map((v, i) => {
         if (i == id) v.completed = !v.completed;
       });
