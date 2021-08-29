@@ -2,8 +2,8 @@
 
 @include mat-core();
 
-$dark-theme-primary: mat-palette($mat-orange);
-$dark-theme-accent: mat-palette($mat-grey);
+$dark-theme-primary: mat-palette($mat-blue-grey);
+$dark-theme-accent: mat-palette($mat-grey, 300);
 $dark-theme-warn: mat-palette($mat-red);
 
 $dark-theme: mat-dark-theme(
