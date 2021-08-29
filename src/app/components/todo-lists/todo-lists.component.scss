@@ -4,6 +4,11 @@
   align-items: center;
   padding: 10px 15px;
   border-bottom: 1px solid #ddd;
+
+  :hover {
+    cursor: pointer;
+    color: #607d8b;
+  }
 }
 
 .list:last-of-type {

@@ -1,6 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { TodoList } from '../../models/TodoList';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { AddListDialogComponent } from '../shared/add-list-dialog/add-list-dialog.component';
 
 @Component({
   selector: 'app-todo-lists',
@@ -10,7 +12,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 export class TodoListsComponent implements OnInit {
   listForm: FormGroup;
 
-  constructor(private builder: FormBuilder) {
+  constructor(private builder: FormBuilder, public dialog: MatDialog) {
     this.listForm = this.builder.group({
       inputList: [null, Validators.required],
     });
@@ -47,5 +49,13 @@ export class TodoListsComponent implements OnInit {
     console.log('todo-lists-comp: ' + this.selectedList);
 
     this.setSelectedList(null);
+  }
+
+  openDialog(): void {
+    let dialogRef = this.dialog.open(AddListDialogComponent);
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log('Dialog Result: ${result}');
+    });
   }
 }

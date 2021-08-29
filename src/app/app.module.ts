@@ -9,6 +9,7 @@ import { MainNavComponent } from './components/shared/main-nav/main-nav.componen
 import { LayoutModule } from '@angular/cdk/layout';
 import { TodoComponent } from './components/todo/todo.component';
 import { TodoListsComponent } from './components/todo-lists/todo-lists.component';
+import { AddListDialogComponent } from './components/shared/add-list-dialog/add-list-dialog.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,9 @@ import { TodoListsComponent } from './components/todo-lists/todo-lists.component
     MainNavComponent,
     TodoComponent,
     TodoListsComponent,
+    AddListDialogComponent,
   ],
+  entryComponents: [AddListDialogComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

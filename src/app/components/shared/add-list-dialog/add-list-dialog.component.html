@@ -1,0 +1,27 @@
+<h2 mat-dialog-title>New List</h2>
+<mat-dialog-content
+  ><p>Please enter a name for your new list.</p></mat-dialog-content
+>
+<mat-dialog-actions>
+  <form>
+    <input
+      type="text"
+      name="inputList"
+      placeholder="Enter List Title..."
+      class="list-input"
+      [formControlName]="'inputList'"
+      maxlength="100"
+    />
+
+    <button
+      mat-raised-button
+      mat-dialog-close
+      type="submit"
+      value="Add List"
+      color="primary"
+      class="todo-submit"
+    >
+      Add List
+    </button>
+  </form>
+</mat-dialog-actions>
