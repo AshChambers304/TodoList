@@ -12,7 +12,6 @@ export class TodoService {
 
   setSelectedList(newSelectedList: TodoList | null): void {
     this.selectedList = newSelectedList;
-    console.log(this.selectedList);
   }
 
   addList(newListTitle: string): void {
@@ -24,6 +23,10 @@ export class TodoService {
 
   deleteList(id: number): void {
     this.todoLists = this.todoLists.filter((v, i) => i !== id);
+
+    for (let i: number = 0; i < this.todoLists.length; i++) {
+      console.log(this.todoLists[i]);
+    }
 
     this.setSelectedList(null);
   }

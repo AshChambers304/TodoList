@@ -17,7 +17,7 @@ import { TodoService } from 'src/app/services/todo.service';
   styleUrls: ['./todo-lists.component.scss'],
 })
 export class TodoListsComponent implements OnInit {
-  constructor(public dialog: MatDialog, private todoService: TodoService) {}
+  constructor(public dialog: MatDialog, public todoService: TodoService) {}
 
   @Input() todoLists: TodoList[] = [];
   @Input() selectedList: TodoList | null = null;
@@ -30,8 +30,6 @@ export class TodoListsComponent implements OnInit {
 
   setSelectedList(newSelectedList: TodoList | null): void {
     this.todoService.setSelectedList(newSelectedList);
-
-    this.selectedList = this.todoService.selectedList;
   }
 
   deleteList(id: number) {
