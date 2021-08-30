@@ -1,3 +1,5 @@
+<button mat-raised-button (click)="openDialog()">New List</button>
+
 <div class="todo-lists">
   <div *ngFor="let todoList of todoLists; let i = index" class="list">
     <span (click)="setSelectedList(todoList)">
@@ -13,5 +15,3 @@
     </button>
   </div>
 </div>
-
-<button mat-raised-button (click)="openDialog()">New List</button>

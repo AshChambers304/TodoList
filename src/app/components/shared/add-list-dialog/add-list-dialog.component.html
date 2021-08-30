@@ -3,7 +3,7 @@
   ><p>Please enter a name for your new list.</p></mat-dialog-content
 >
 <mat-dialog-actions>
-  <form>
+  <form [formGroup]="listForm">
     <input
       type="text"
       name="inputList"
@@ -20,6 +20,8 @@
       value="Add List"
       color="primary"
       class="todo-submit"
+      [disabled]="listForm.invalid"
+      (click)="addList()"
     >
       Add List
     </button>

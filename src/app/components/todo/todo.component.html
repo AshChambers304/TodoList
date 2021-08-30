@@ -1,11 +1,12 @@
-<ng-container *ngIf="selectedList">
+<ng-container *ngIf="todoService.selectedList">
   <div class="todos">
-    <h1 class="title">{{ selectedList.title }}</h1>
+    <h1 class="title">{{ todoService.selectedList.title }}</h1>
+    <button mat-raised-button (click)="openDialog()">New Todo</button>
     <div
-      *ngFor="let selectedList of selectedList.todos; let i = index"
+      *ngFor="let selectedList of todoService.selectedList.todos; let i = index"
       class="todo {{ selectedList.completed ? 'done' : '' }}"
     >
-      <div class="content" (click)="toggleDone(i)">
+      <div class="content" (click)="toggleTodoDone(i)">
         {{ selectedList.content }}
       </div>
       <button
@@ -18,25 +19,4 @@
       </button>
     </div>
   </div>
-
-  <form [formGroup]="todoForm" *ngIf="selectedList" (submit)="addTodo()">
-    <input
-      type="text"
-      name="inputTodo"
-      placeholder="Add Todo..."
-      class="todo-input"
-      [formControlName]="'inputTodo'"
-      maxlength="170"
-    />
-    <button
-      mat-raised-button
-      type="submit"
-      value="Add Todo"
-      color="primary"
-      class="todo-submit"
-      [disabled]="todoForm.invalid"
-    >
-      Add Todo
-    </button>
-  </form>
 </ng-container>

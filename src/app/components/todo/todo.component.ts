@@ -1,7 +1,7 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-
-import { TodoList } from 'src/app/models/TodoList';
+import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { AddTodoDialogComponent } from '../shared/add-todo-dialog/add-todo-dialog.component';
+import { TodoService } from 'src/app/services/todo.service';
 
 @Component({
   selector: 'app-todo',
@@ -9,42 +9,19 @@ import { TodoList } from 'src/app/models/TodoList';
   styleUrls: ['./todo.component.scss'],
 })
 export class TodoComponent implements OnInit {
-  todoForm: FormGroup;
-
-  constructor(private builder: FormBuilder) {
-    this.todoForm = this.builder.group({
-      inputTodo: [null, Validators.required],
-    });
-  }
-
-  @Input() selectedList: TodoList | null = null;
+  constructor(public todoService: TodoService, public dialog: MatDialog) {}
 
   ngOnInit(): void {}
 
-  addTodo(): void {
-    if (this.selectedList) {
-      this.selectedList.todos.push({
-        content: this.todoForm.get('inputTodo')?.value,
-        completed: false,
-      });
-
-      this.todoForm.setValue({ inputTodo: '' });
-    }
-  }
-
   deleteTodo(id: number): void {
-    if (this.selectedList) {
-      this.selectedList.todos = this.selectedList.todos.filter(
-        (v, i) => i !== id
-      );
-    }
+    this.todoService.deleteTodo(id);
   }
 
-  toggleDone(id: number): void {
-    if (this.selectedList) {
-      this.selectedList.todos.map((v, i) => {
-        if (i == id) v.completed = !v.completed;
-      });
-    }
+  toggleTodoDone(id: number): void {
+    this.todoService.toggleTodoDone(id);
+  }
+
+  openDialog(): void {
+    this.dialog.open(AddTodoDialogComponent);
   }
 }

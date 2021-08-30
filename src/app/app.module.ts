@@ -10,6 +10,8 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { TodoComponent } from './components/todo/todo.component';
 import { TodoListsComponent } from './components/todo-lists/todo-lists.component';
 import { AddListDialogComponent } from './components/shared/add-list-dialog/add-list-dialog.component';
+import { TodoService } from './services/todo.service';
+import { AddTodoDialogComponent } from './components/shared/add-todo-dialog/add-todo-dialog.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +20,7 @@ import { AddListDialogComponent } from './components/shared/add-list-dialog/add-
     TodoComponent,
     TodoListsComponent,
     AddListDialogComponent,
+    AddTodoDialogComponent,
   ],
   entryComponents: [AddListDialogComponent],
   imports: [
@@ -28,7 +31,7 @@ import { AddListDialogComponent } from './components/shared/add-list-dialog/add-
     FormsModule,
     ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [TodoService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
