@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { TodoService } from 'src/app/services/todo.service';
 
 @Component({
   selector: 'app-add-todo-dialog',
@@ -10,15 +9,17 @@ import { TodoService } from 'src/app/services/todo.service';
 export class AddTodoDialogComponent implements OnInit {
   todoForm: FormGroup;
 
-  constructor(private builder: FormBuilder, private todoService: TodoService) {
+  constructor(private builder: FormBuilder) {
     this.todoForm = this.builder.group({
       inputTodo: [null, Validators.required],
     });
   }
 
+  @Output() addTodoEmitter: EventEmitter<string> = new EventEmitter<string>();
+
   ngOnInit(): void {}
 
   addTodo() {
-    this.todoService.addTodo(this.todoForm.get('inputTodo')?.value);
+    this.addTodoEmitter.emit(this.todoForm.get('inputTodo')?.value);
   }
 }

@@ -12,6 +12,7 @@
       <app-todo-lists
         [todoLists]="todoLists"
         (selectedListEmitter)="handleSelectedListEmitter($event)"
+        (listToDeleteEmitter)="handleListToDeleteEmitter($event)"
       ></app-todo-lists>
     </mat-nav-list>
   </mat-sidenav>
@@ -28,6 +29,9 @@
       </button>
       <span class="title">TooDoo</span>
     </mat-toolbar>
-    <app-todo></app-todo>
+    <app-todo
+      (todoToDeleteEmitter)="handleTodoToDeleteEmitter($event)"
+      (toggledDoneTodoEmitter)="handleToggledDoneTodoEmitter($event)"
+    ></app-todo>
   </mat-sidenav-content>
 </mat-sidenav-container>

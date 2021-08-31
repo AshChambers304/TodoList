@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AddTodoDialogComponent } from '../shared/add-todo-dialog/add-todo-dialog.component';
-import { TodoService } from 'src/app/services/todo.service';
+import { TodoList } from 'src/app/models/TodoList';
 
 @Component({
   selector: 'app-todo',
@@ -9,16 +9,22 @@ import { TodoService } from 'src/app/services/todo.service';
   styleUrls: ['./todo.component.scss'],
 })
 export class TodoComponent implements OnInit {
-  constructor(public todoService: TodoService, public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog) {}
+
+  @Input() selectedList: TodoList | null = null;
+  @Output() todoToDeleteEmitter: EventEmitter<number> =
+    new EventEmitter<number>();
+  @Output() toggledDoneTodoEmitter: EventEmitter<number> =
+    new EventEmitter<number>();
 
   ngOnInit(): void {}
 
   deleteTodo(id: number): void {
-    this.todoService.deleteTodo(id);
+    this.todoToDeleteEmitter.emit(id);
   }
 
   toggleTodoDone(id: number): void {
-    this.todoService.toggleTodoDone(id);
+    this.toggledDoneTodoEmitter.emit(id);
   }
 
   openDialog(): void {

@@ -1,9 +1,9 @@
-<ng-container *ngIf="todoService.selectedList">
+<ng-container *ngIf="selectedList">
   <div class="todos">
-    <h1 class="title">{{ todoService.selectedList.title }}</h1>
+    <h1 class="title">{{ selectedList.title }}</h1>
     <button mat-raised-button (click)="openDialog()">New Todo</button>
     <div
-      *ngFor="let selectedList of todoService.selectedList.todos; let i = index"
+      *ngFor="let selectedList of selectedList.todos; let i = index"
       class="todo {{ selectedList.completed ? 'done' : '' }}"
     >
       <div class="content" (click)="toggleTodoDone(i)">
