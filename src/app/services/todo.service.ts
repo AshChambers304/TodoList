@@ -23,11 +23,7 @@ export class TodoService {
 
   deleteList(id: number): void {
     this.todoLists = this.todoLists.filter((v, i) => i !== id);
-
-    for (let i: number = 0; i < this.todoLists.length; i++) {
-      console.log(this.todoLists[i]);
-    }
-
+    console.log('List deleted');
     this.setSelectedList(null);
   }
 

@@ -21,7 +21,6 @@ export class AddListDialogComponent implements OnInit {
   ngOnInit(): void {}
 
   addList() {
-    console.log(this.todoLists);
-    this.addListEmitter.emit('${listForm.value.inputList}');
+    this.addListEmitter.emit(this.listForm.get('inputList')?.value);
   }
 }

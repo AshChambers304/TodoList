@@ -35,11 +35,19 @@ export class MainNavComponent {
     this.todoService.deleteList(id);
   }
 
+  handleListTitleEmitter(listTitle: string) {
+    this.todoService.addList(listTitle);
+  }
+
   handleTodoToDeleteEmitter(id: number) {
     this.todoService.deleteTodo(id);
   }
 
   handleToggledDoneTodoEmitter(id: number) {
     this.todoService.toggleTodoDone(id);
+  }
+
+  handleTodoContentEmitter(todoContent: string) {
+    this.todoService.addTodo(todoContent);
   }
 }

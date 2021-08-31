@@ -16,8 +16,14 @@ export class TodoComponent implements OnInit {
     new EventEmitter<number>();
   @Output() toggledDoneTodoEmitter: EventEmitter<number> =
     new EventEmitter<number>();
+  @Output() todoContentEmitter: EventEmitter<string> =
+    new EventEmitter<string>();
 
   ngOnInit(): void {}
+
+  addTodo(todoContent: string) {
+    this.todoContentEmitter.emit(todoContent);
+  }
 
   deleteTodo(id: number): void {
     this.todoToDeleteEmitter.emit(id);
@@ -28,6 +34,10 @@ export class TodoComponent implements OnInit {
   }
 
   openDialog(): void {
-    this.dialog.open(AddTodoDialogComponent);
+    let dialogRef = this.dialog.open(AddTodoDialogComponent);
+
+    dialogRef.componentInstance.addTodoEmitter.subscribe((result) => {
+      this.addTodo(result);
+    });
   }
 }

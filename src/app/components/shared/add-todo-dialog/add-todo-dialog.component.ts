@@ -20,6 +20,6 @@ export class AddTodoDialogComponent implements OnInit {
   ngOnInit(): void {}
 
   addTodo() {
-    this.addTodoEmitter.emit('${todoForm.value.inputTodo}');
+    this.addTodoEmitter.emit(this.todoForm.get('inputTodo')?.value);
   }
 }

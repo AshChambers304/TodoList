@@ -13,6 +13,7 @@
         [todoLists]="todoLists"
         (selectedListEmitter)="handleSelectedListEmitter($event)"
         (listToDeleteEmitter)="handleListToDeleteEmitter($event)"
+        (listTitleEmitter)="handleListTitleEmitter($event)"
       ></app-todo-lists>
     </mat-nav-list>
   </mat-sidenav>
@@ -32,6 +33,7 @@
     <app-todo
       (todoToDeleteEmitter)="handleTodoToDeleteEmitter($event)"
       (toggledDoneTodoEmitter)="handleToggledDoneTodoEmitter($event)"
+      (todoContentEmitter)="handleTodoContentEmitter($event)"
     ></app-todo>
   </mat-sidenav-content>
 </mat-sidenav-container>

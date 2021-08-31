@@ -17,8 +17,13 @@ export class TodoListsComponent implements OnInit {
     new EventEmitter<TodoList | null>();
   @Output() listToDeleteEmitter: EventEmitter<number> =
     new EventEmitter<number>();
+  @Output() listTitleEmitter: EventEmitter<string> = new EventEmitter<string>();
 
   ngOnInit(): void {}
+
+  addList(listTitle: string): void {
+    this.listTitleEmitter.emit(listTitle);
+  }
 
   setSelectedList(newSelectedList: TodoList | null): void {
     this.selectedList = newSelectedList;
@@ -32,6 +37,8 @@ export class TodoListsComponent implements OnInit {
   openDialog(): void {
     let dialogRef = this.dialog.open(AddListDialogComponent);
 
-    dialogRef.afterClosed().subscribe(() => {});
+    dialogRef.componentInstance.addListEmitter.subscribe((result) => {
+      this.addList(result);
+    });
   }
 }
