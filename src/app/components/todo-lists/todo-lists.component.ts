@@ -30,6 +30,8 @@ export class TodoListsComponent implements OnInit {
   }
 
   openDialog(): void {
-    this.dialog.open(AddListDialogComponent);
+    let dialogRef = this.dialog.open(AddListDialogComponent);
+
+    dialogRef.afterClosed().subscribe(() => {});
   }
 }

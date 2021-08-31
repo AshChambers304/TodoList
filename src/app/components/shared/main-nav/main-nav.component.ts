@@ -29,7 +29,6 @@ export class MainNavComponent {
   handleSelectedListEmitter(newSelectedList: TodoList | null): void {
     this.selectedList = newSelectedList;
     this.todoService.setSelectedList(this.selectedList);
-    console.log(this.todoService.selectedList);
   }
 
   handleListToDeleteEmitter(id: number): void {

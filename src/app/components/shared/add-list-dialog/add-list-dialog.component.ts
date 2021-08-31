@@ -1,5 +1,6 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { TodoList } from 'src/app/models/TodoList';
 
 @Component({
   selector: 'app-add-list-dialog',
@@ -14,12 +15,13 @@ export class AddListDialogComponent implements OnInit {
       inputList: [null, Validators.required],
     });
   }
-
+  @Input() todoLists: TodoList[] = [];
   @Output() addListEmitter: EventEmitter<string> = new EventEmitter<string>();
 
   ngOnInit(): void {}
 
   addList() {
-    this.addListEmitter.emit(this.listForm.get('inputList')?.value);
+    console.log(this.todoLists);
+    this.addListEmitter.emit('${listForm.value.inputList}');
   }
 }
