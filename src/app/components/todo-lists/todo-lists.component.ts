@@ -32,6 +32,7 @@ export class TodoListsComponent implements OnInit {
 
   deleteList(id: number) {
     this.listToDeleteEmitter.emit(id);
+    console.log('todo-lists: ' + this.todoLists, this.selectedList);
   }
 
   openDialog(): void {

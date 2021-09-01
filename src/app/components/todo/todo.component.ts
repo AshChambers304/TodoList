@@ -39,5 +39,7 @@ export class TodoComponent implements OnInit {
     dialogRef.componentInstance.addTodoEmitter.subscribe((result) => {
       this.addTodo(result);
     });
+
+    console.log(this.selectedList);
   }
 }

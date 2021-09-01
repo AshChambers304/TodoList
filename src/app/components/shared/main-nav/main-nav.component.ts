@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
@@ -10,7 +10,7 @@ import { TodoService } from 'src/app/services/todo.service';
   templateUrl: './main-nav.component.html',
   styleUrls: ['./main-nav.component.scss'],
 })
-export class MainNavComponent {
+export class MainNavComponent implements OnInit {
   isHandset$: Observable<boolean> = this.breakpointObserver
     .observe(Breakpoints.Handset)
     .pipe(
@@ -26,6 +26,8 @@ export class MainNavComponent {
     private todoService: TodoService
   ) {}
 
+  ngOnInit() {}
+
   handleSelectedListEmitter(newSelectedList: TodoList | null): void {
     this.selectedList = newSelectedList;
     this.todoService.setSelectedList(this.selectedList);
@@ -33,6 +35,8 @@ export class MainNavComponent {
 
   handleListToDeleteEmitter(id: number): void {
     this.todoService.deleteList(id);
+    this.todoLists = this.todoService.todoLists;
+    console.log('main-nav: ' + this.todoLists, this.selectedList);
   }
 
   handleListTitleEmitter(listTitle: string) {

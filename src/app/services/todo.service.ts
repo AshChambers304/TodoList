@@ -12,6 +12,8 @@ export class TodoService {
 
   setSelectedList(newSelectedList: TodoList | null): void {
     this.selectedList = newSelectedList;
+
+    console.log(this.todoLists);
   }
 
   addList(newListTitle: string): void {
@@ -19,12 +21,15 @@ export class TodoService {
       title: newListTitle,
       todos: [],
     });
+
+    console.log(this.todoLists);
   }
 
   deleteList(id: number): void {
     this.todoLists = this.todoLists.filter((v, i) => i !== id);
-    console.log('List deleted');
     this.setSelectedList(null);
+
+    console.log('todo service: ' + this.todoLists, this.selectedList);
   }
 
   addTodo(newTodo: string): void {
@@ -32,6 +37,8 @@ export class TodoService {
       content: newTodo,
       completed: false,
     });
+
+    console.log(this.todoLists);
   }
 
   deleteTodo(id: number): void {
@@ -40,6 +47,8 @@ export class TodoService {
         (v, i) => i !== id
       );
     }
+
+    console.log(this.todoLists);
   }
 
   toggleTodoDone(id: number): void {
@@ -48,5 +57,7 @@ export class TodoService {
         if (i == id) v.completed = !v.completed;
       });
     }
+
+    console.log(this.todoLists);
   }
 }
