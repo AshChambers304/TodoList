@@ -36,6 +36,7 @@ export class MainNavComponent implements OnInit {
   handleListToDeleteEmitter(id: number): void {
     this.todoService.deleteList(id);
     this.todoLists = this.todoService.todoLists;
+    this.selectedList = this.todoService.selectedList;
     console.log('main-nav: ' + this.todoLists, this.selectedList);
   }
 
