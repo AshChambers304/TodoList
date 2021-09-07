@@ -33,6 +33,10 @@ export class TodoService {
     });
 
     localStorage.setItem('listToken', JSON.stringify(this.todoLists));
+    localStorage.setItem(
+      'selectedListToken',
+      JSON.stringify(this.selectedList)
+    );
 
     console.log(this.todoLists);
   }
@@ -42,6 +46,10 @@ export class TodoService {
     this.setSelectedList(null);
 
     localStorage.setItem('listToken', JSON.stringify(this.todoLists));
+    localStorage.setItem(
+      'selectedListToken',
+      JSON.stringify(this.selectedList)
+    );
 
     console.log('todo service: ' + this.todoLists, this.selectedList);
   }
@@ -53,6 +61,10 @@ export class TodoService {
     });
 
     localStorage.setItem('listToken', JSON.stringify(this.todoLists));
+    localStorage.setItem(
+      'selectedListToken',
+      JSON.stringify(this.selectedList)
+    );
 
     console.log(this.todoLists);
   }
@@ -65,6 +77,10 @@ export class TodoService {
     }
 
     localStorage.setItem('listToken', JSON.stringify(this.todoLists));
+    localStorage.setItem(
+      'selectedListToken',
+      JSON.stringify(this.selectedList)
+    );
 
     console.log(this.todoLists);
   }
@@ -75,6 +91,12 @@ export class TodoService {
         if (i == id) v.completed = !v.completed;
       });
     }
+
+    localStorage.setItem('listToken', JSON.stringify(this.todoLists));
+    localStorage.setItem(
+      'selectedListToken',
+      JSON.stringify(this.selectedList)
+    );
 
     console.log(this.todoLists);
   }
