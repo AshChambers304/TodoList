@@ -19,7 +19,7 @@ export class MainNavComponent implements OnInit {
     );
 
   public todoLists: TodoList[] = this.todoService.todoLists;
-  public selectedList: TodoList | null = null;
+  public selectedList: TodoList | null = this.todoService.selectedList;
 
   constructor(
     private breakpointObserver: BreakpointObserver,

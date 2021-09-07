@@ -5,13 +5,23 @@ import { TodoList } from '../models/TodoList';
   providedIn: 'root',
 })
 export class TodoService {
-  constructor() {}
+  constructor() {
+    this.todoLists = JSON.parse(localStorage.getItem('listToken') || '[]');
+    this.selectedList = JSON.parse(
+      localStorage.getItem('selectedListToken') || '[]'
+    );
+  }
 
   public todoLists: TodoList[] = [];
   public selectedList: TodoList | null = null;
 
   setSelectedList(newSelectedList: TodoList | null): void {
     this.selectedList = newSelectedList;
+
+    localStorage.setItem(
+      'selectedListToken',
+      JSON.stringify(this.selectedList)
+    );
 
     console.log(this.todoLists);
   }
@@ -22,12 +32,16 @@ export class TodoService {
       todos: [],
     });
 
+    localStorage.setItem('listToken', JSON.stringify(this.todoLists));
+
     console.log(this.todoLists);
   }
 
   deleteList(id: number): void {
     this.todoLists = this.todoLists.filter((v, i) => i !== id);
     this.setSelectedList(null);
+
+    localStorage.setItem('listToken', JSON.stringify(this.todoLists));
 
     console.log('todo service: ' + this.todoLists, this.selectedList);
   }
@@ -38,6 +52,8 @@ export class TodoService {
       completed: false,
     });
 
+    localStorage.setItem('listToken', JSON.stringify(this.todoLists));
+
     console.log(this.todoLists);
   }
 
@@ -47,6 +63,8 @@ export class TodoService {
         (v, i) => i !== id
       );
     }
+
+    localStorage.setItem('listToken', JSON.stringify(this.todoLists));
 
     console.log(this.todoLists);
   }
