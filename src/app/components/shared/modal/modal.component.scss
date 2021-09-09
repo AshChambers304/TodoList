@@ -1,0 +1,32 @@
+app-modal {
+  display: none;
+  .modal {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    min-height: 25vh;
+    min-width: 25vw;
+    border-radius: 1.5rem;
+    overflow: auto;
+
+    .modal-content {
+      background: rgb(48, 48, 48);
+      padding: 5rem;
+    }
+  }
+
+  .modal-background {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 25vh 25vw;
+    background-color: #000;
+    opacity: 0.75;
+    z-index: 900;
+    overflow: hidden;
+  }
+}

@@ -1,1 +1,15 @@
-<app-main-nav> </app-main-nav>
+<app-main-nav
+  [todoLists]="todoLists"
+  [selectedList]="selectedList"
+  (selectedListEmitter)="handleSelectedListEmitter($event)"
+  (listToDeleteEmitter)="handleListToDeleteEmitter($event)"
+  (listTitleEmitter)="handleListTitleEmitter($event)"
+>
+</app-main-nav>
+<app-todo
+  [selectedList]="selectedList"
+  (todoToDeleteEmitter)="handleTodoToDeleteEmitter($event)"
+  (toggledDoneTodoEmitter)="handleToggledDoneTodoEmitter($event)"
+  (todoContentEmitter)="handleTodoContentEmitter($event)"
+></app-todo>
+<app-modal></app-modal>

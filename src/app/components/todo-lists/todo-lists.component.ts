@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { TodoList } from '../../models/TodoList';
 import { MatDialog } from '@angular/material/dialog';
 import { AddListDialogComponent } from '../shared/add-list-dialog/add-list-dialog.component';
+import { ModalService } from '../../services/modal.service';
 
 @Component({
   selector: 'app-todo-lists',
@@ -9,37 +10,30 @@ import { AddListDialogComponent } from '../shared/add-list-dialog/add-list-dialo
   styleUrls: ['./todo-lists.component.scss'],
 })
 export class TodoListsComponent implements OnInit {
-  constructor(public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog, private modalService: ModalService) {}
 
   @Input() todoLists: TodoList[] = [];
   @Input() selectedList: TodoList | null = null;
   @Output() selectedListEmitter: EventEmitter<TodoList | null> =
     new EventEmitter<TodoList | null>();
-  @Output() listToDeleteEmitter: EventEmitter<number> =
-    new EventEmitter<number>();
   @Output() listTitleEmitter: EventEmitter<string> = new EventEmitter<string>();
 
   ngOnInit(): void {}
-
-  addList(listTitle: string): void {
-    this.listTitleEmitter.emit(listTitle);
-  }
 
   setSelectedList(newSelectedList: TodoList | null): void {
     this.selectedList = newSelectedList;
     this.selectedListEmitter.emit(this.selectedList);
   }
 
-  deleteList(id: number) {
-    this.listToDeleteEmitter.emit(id);
-    console.log('todo-lists: ' + this.todoLists, this.selectedList);
+  openModal(id: string): void {
+    this.modalService.open(id);
   }
 
-  openDialog(): void {
-    let dialogRef = this.dialog.open(AddListDialogComponent);
+  handleCloseModalEmitter(id: string): void {
+    this.modalService.close(id);
+  }
 
-    dialogRef.componentInstance.addListEmitter.subscribe((result) => {
-      this.addList(result);
-    });
+  handleListTitleEmitter(newListTitle: string) {
+    this.listTitleEmitter.emit(newListTitle);
   }
 }

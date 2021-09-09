@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 import { AddTodoDialogComponent } from '../shared/add-todo-dialog/add-todo-dialog.component';
 import { TodoList } from 'src/app/models/TodoList';
+import { ModalService } from 'src/app/services/modal.service';
 
 @Component({
   selector: 'app-todo',
@@ -9,9 +9,11 @@ import { TodoList } from 'src/app/models/TodoList';
   styleUrls: ['./todo.component.scss'],
 })
 export class TodoComponent implements OnInit {
-  constructor(public dialog: MatDialog) {}
+  constructor(private modalService: ModalService) {}
 
   @Input() selectedList: TodoList | null = null;
+  @Output() listToDeleteEmitter: EventEmitter<number> =
+    new EventEmitter<number>();
   @Output() todoToDeleteEmitter: EventEmitter<number> =
     new EventEmitter<number>();
   @Output() toggledDoneTodoEmitter: EventEmitter<number> =
@@ -19,27 +21,31 @@ export class TodoComponent implements OnInit {
   @Output() todoContentEmitter: EventEmitter<string> =
     new EventEmitter<string>();
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log('todo-selected-list: ' + this.selectedList);
+  }
 
-  addTodo(todoContent: string) {
+  handleTodoContentEmitter(todoContent: string) {
     this.todoContentEmitter.emit(todoContent);
+  }
+
+  handleCloseModalEmitter(id: string): void {
+    this.modalService.close(id);
   }
 
   deleteTodo(id: number): void {
     this.todoToDeleteEmitter.emit(id);
   }
 
+  deleteList(id: number) {
+    this.listToDeleteEmitter.emit(id);
+  }
+
   toggleTodoDone(id: number): void {
     this.toggledDoneTodoEmitter.emit(id);
   }
 
-  openDialog(): void {
-    let dialogRef = this.dialog.open(AddTodoDialogComponent);
-
-    dialogRef.componentInstance.addTodoEmitter.subscribe((result) => {
-      this.addTodo(result);
-    });
-
-    console.log(this.selectedList);
+  openModal(id: string): void {
+    this.modalService.open(id);
   }
 }

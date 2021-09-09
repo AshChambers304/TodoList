@@ -1,29 +1,24 @@
-<h2 mat-dialog-title>New List</h2>
-<mat-dialog-content
-  ><p>Please enter a name for your new list.</p></mat-dialog-content
->
-<mat-dialog-actions>
-  <form [formGroup]="listForm">
-    <input
-      type="text"
-      name="inputList"
-      placeholder="Enter List Title..."
-      class="list-input"
-      [formControlName]="'inputList'"
-      maxlength="100"
-    />
+<h2>New List</h2>
 
-    <button
-      mat-raised-button
-      mat-dialog-close
-      type="submit"
-      value="Add List"
-      color="primary"
-      class="todo-submit"
-      [disabled]="listForm.invalid"
-      (click)="addList()"
-    >
-      Add List
-    </button>
-  </form>
-</mat-dialog-actions>
+<p>Please enter a name for your new list.</p>
+<form [formGroup]="listForm">
+  <input
+    type="text"
+    name="inputList"
+    placeholder="Enter List Title..."
+    class="list-input"
+    [formControlName]="'inputList'"
+    maxlength="100"
+  />
+
+  <button
+    type="submit"
+    value="Add List"
+    color="primary"
+    class="todo-submit"
+    [disabled]="listForm.invalid"
+    (click)="onSubmit()"
+  >
+    Add List
+  </button>
+</form>
