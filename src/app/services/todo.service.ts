@@ -10,6 +10,11 @@ export class TodoService {
     this.selectedList = JSON.parse(
       localStorage.getItem('selectedListToken') || '[]'
     );
+
+    console.log(
+      'todo-lists: ' + this.todoLists,
+      'selected-list: ' + this.selectedList
+    );
   }
 
   public todoLists: TodoList[] = [];
@@ -22,8 +27,6 @@ export class TodoService {
       'selectedListToken',
       JSON.stringify(this.selectedList)
     );
-
-    console.log(this.todoLists);
   }
 
   addList(newListTitle: string): void {
@@ -37,8 +40,6 @@ export class TodoService {
       'selectedListToken',
       JSON.stringify(this.selectedList)
     );
-
-    console.log(this.todoLists);
   }
 
   deleteList(id: number): void {
@@ -50,8 +51,6 @@ export class TodoService {
       'selectedListToken',
       JSON.stringify(this.selectedList)
     );
-
-    console.log('todo service: ' + this.todoLists, this.selectedList);
   }
 
   addTodo(newTodo: string): void {
@@ -65,8 +64,6 @@ export class TodoService {
       'selectedListToken',
       JSON.stringify(this.selectedList)
     );
-
-    console.log(this.todoLists);
   }
 
   deleteTodo(id: number): void {
@@ -81,8 +78,6 @@ export class TodoService {
       'selectedListToken',
       JSON.stringify(this.selectedList)
     );
-
-    console.log(this.todoLists);
   }
 
   toggleTodoDone(id: number): void {
@@ -97,7 +92,5 @@ export class TodoService {
       'selectedListToken',
       JSON.stringify(this.selectedList)
     );
-
-    console.log(this.todoLists);
   }
 }

@@ -1,22 +1,30 @@
 <ng-container *ngIf="selectedList">
-  <div class="todos">
-    <h1 class="title">{{ selectedList.title }}</h1>
-    <button mat-raised-button (click)="openDialog()">New Todo</button>
-    <div
-      *ngFor="let selectedList of selectedList.todos; let i = index"
-      class="todo {{ selectedList.completed ? 'done' : '' }}"
-    >
-      <div class="content" (click)="toggleTodoDone(i)">
-        {{ selectedList.content }}
-      </div>
-      <button
-        mat-raised-button
-        color="primary"
-        class="delete todo-submit"
-        (click)="deleteTodo(i)"
+  <div class="todo-container">
+    <div class="todos">
+      <h1 class="title">{{ selectedList.title }}</h1>
+      <p class="new-todo" (click)="openModal('new-todo-modal')">New Todo</p>
+      <div
+        *ngFor="let selectedList of selectedList.todos; let i = index"
+        class="todo {{ selectedList.completed ? 'done' : '' }}"
       >
-        Remove
-      </button>
+        <div class="content" (click)="toggleTodoDone(i)">
+          {{ selectedList.content }}
+        </div>
+        <button
+          color="primary"
+          class="delete todo-submit"
+          (click)="deleteTodo(i)"
+        >
+          Remove
+        </button>
+      </div>
     </div>
   </div>
 </ng-container>
+
+<app-modal id="new-todo-modal">
+  <app-add-todo-dialog
+    (todoContentEmitter)="handleTodoContentEmitter($event)"
+    (closeModalEmitter)="handleCloseModalEmitter($event)"
+  ></app-add-todo-dialog>
+</app-modal>

@@ -12,6 +12,7 @@ import { TodoListsComponent } from './components/todo-lists/todo-lists.component
 import { AddListDialogComponent } from './components/shared/add-list-dialog/add-list-dialog.component';
 import { TodoService } from './services/todo.service';
 import { AddTodoDialogComponent } from './components/shared/add-todo-dialog/add-todo-dialog.component';
+import { ModalModule } from './components/shared/modal/modal.module';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { AddTodoDialogComponent } from './components/shared/add-todo-dialog/add-
     LayoutModule,
     FormsModule,
     ReactiveFormsModule,
+    ModalModule,
   ],
   providers: [TodoService],
   bootstrap: [AppComponent],

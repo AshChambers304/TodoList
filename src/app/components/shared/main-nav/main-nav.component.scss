@@ -1,25 +1,16 @@
-.sidenav-container {
-  height: 100%;
-}
+.header-container {
+  min-width: 100vw;
+  background-color: rgb(39, 39, 39);
+  padding: 1rem 0;
 
-.sidenav {
-  width: 200px;
-}
+  h1,
+  p,
+  span {
+    color: rgb(255, 255, 255);
+  }
 
-.sidenav .mat-toolbar {
-  background: inherit;
-}
-
-.mat-toolbar.mat-primary {
-  position: sticky;
-  top: 0;
-  z-index: 1;
-}
-
-.title {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 10px 15px;
-  flex: 1 1 100%;
+  h1 {
+    text-align: center;
+    margin-bottom: 1rem;
+  }
 }

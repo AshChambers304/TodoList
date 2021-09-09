@@ -15,11 +15,16 @@ export class AddTodoDialogComponent implements OnInit {
     });
   }
 
-  @Output() addTodoEmitter: EventEmitter<string> = new EventEmitter<string>();
+  @Output() todoContentEmitter: EventEmitter<string> =
+    new EventEmitter<string>();
+  @Output() closeModalEmitter: EventEmitter<string> =
+    new EventEmitter<string>();
 
   ngOnInit(): void {}
 
-  addTodo() {
-    this.addTodoEmitter.emit(this.todoForm.get('inputTodo')?.value);
+  onSubmit() {
+    this.todoContentEmitter.emit(this.todoForm.get('inputTodo')?.value);
+    this.todoForm.setValue({ inputTodo: '' });
+    this.closeModalEmitter.emit('new-todo-modal');
   }
 }
