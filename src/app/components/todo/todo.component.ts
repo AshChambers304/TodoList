@@ -1,5 +1,4 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { AddTodoDialogComponent } from '../shared/add-todo-dialog/add-todo-dialog.component';
 import { TodoList } from 'src/app/models/TodoList';
 import { ModalService } from 'src/app/services/modal.service';
 

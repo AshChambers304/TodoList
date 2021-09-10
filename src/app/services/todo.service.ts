@@ -8,7 +8,7 @@ export class TodoService {
   constructor() {
     this.todoLists = JSON.parse(localStorage.getItem('listToken') || '[]');
     this.selectedList = JSON.parse(
-      localStorage.getItem('selectedListToken') || '[]'
+      localStorage.getItem('selectedListToken') || 'null'
     );
 
     console.log(

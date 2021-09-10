@@ -1,5 +1,5 @@
-<ng-container *ngIf="selectedList">
-  <div class="todo-container">
+<div class="todo-container">
+  <ng-container *ngIf="selectedList">
     <div class="todos">
       <h1 class="title">{{ selectedList.title }}</h1>
       <p class="new-todo" (click)="openModal('new-todo-modal')">New Todo</p>
@@ -19,8 +19,8 @@
         </button>
       </div>
     </div>
-  </div>
-</ng-container>
+  </ng-container>
+</div>
 
 <app-modal id="new-todo-modal">
   <app-add-todo-dialog
