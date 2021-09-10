@@ -1,7 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { TodoList } from '../../models/TodoList';
-import { MatDialog } from '@angular/material/dialog';
-import { AddListDialogComponent } from '../shared/add-list-dialog/add-list-dialog.component';
 import { ModalService } from '../../services/modal.service';
 
 @Component({
@@ -10,7 +8,7 @@ import { ModalService } from '../../services/modal.service';
   styleUrls: ['./todo-lists.component.scss'],
 })
 export class TodoListsComponent implements OnInit {
-  constructor(public dialog: MatDialog, private modalService: ModalService) {}
+  constructor(private modalService: ModalService) {}
 
   @Input() todoLists: TodoList[] = [];
   @Input() selectedList: TodoList | null = null;
