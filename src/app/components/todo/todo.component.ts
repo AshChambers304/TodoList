@@ -1,6 +1,16 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  Output,
+  EventEmitter,
+  ViewChild,
+  ElementRef,
+} from '@angular/core';
 import { TodoList } from 'src/app/models/TodoList';
 import { ModalService } from 'src/app/services/modal.service';
+import { faEllipsisH } from '@fortawesome/free-solid-svg-icons';
+import { PopupMenuComponent } from '../shared/popup-menu/popup-menu.component';
 
 @Component({
   selector: 'app-todo',
@@ -8,7 +18,9 @@ import { ModalService } from 'src/app/services/modal.service';
   styleUrls: ['./todo.component.scss'],
 })
 export class TodoComponent implements OnInit {
-  constructor(private modalService: ModalService) {}
+  faEllipsisH = faEllipsisH;
+
+  constructor(private modalService: ModalService, elRef: ElementRef) {}
 
   @Input() selectedList: TodoList | null = null;
   @Output() listToDeleteEmitter: EventEmitter<number> =
@@ -22,6 +34,19 @@ export class TodoComponent implements OnInit {
 
   ngOnInit(): void {
     console.log('todo-selected-list: ' + this.selectedList);
+  }
+
+  @ViewChild(PopupMenuComponent) menu?: PopupMenuComponent;
+
+  openMenu(e: any) {
+    if (this.menu) {
+      this.menu.open(e);
+      console.log('menu opened');
+    }
+  }
+
+  itemSelected(item: number) {
+    console.log('Item', item);
   }
 
   handleTodoContentEmitter(todoContent: string) {

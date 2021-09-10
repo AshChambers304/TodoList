@@ -12,6 +12,8 @@ import { AddListDialogComponent } from './components/shared/dialogs/add-list-dia
 import { TodoService } from './services/todo.service';
 import { AddTodoDialogComponent } from './components/shared/dialogs/add-todo-dialog/add-todo-dialog.component';
 import { ModalModule } from './components/shared/modal/modal.module';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { PopupMenuComponent } from './components/shared/popup-menu/popup-menu.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,7 @@ import { ModalModule } from './components/shared/modal/modal.module';
     TodoListsComponent,
     AddListDialogComponent,
     AddTodoDialogComponent,
+    PopupMenuComponent,
   ],
   entryComponents: [AddListDialogComponent, AddTodoDialogComponent],
   imports: [
@@ -30,6 +33,7 @@ import { ModalModule } from './components/shared/modal/modal.module';
     FormsModule,
     ReactiveFormsModule,
     ModalModule,
+    FontAwesomeModule,
   ],
   providers: [TodoService],
   bootstrap: [AppComponent],
