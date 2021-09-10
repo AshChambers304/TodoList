@@ -22,13 +22,16 @@ export class PopupMenuComponent implements OnInit {
   ngOnInit() {}
 
   open(e: MouseEvent) {
-    this.x = `${e.pageX}px`;
+    if (MouseEvent) {
+      this.x = `${e.pageX}px`;
 
-    this.y = `${e.pageY}px`;
+      this.y = `${e.pageY}px`;
 
-    this.visibility = 'visible';
+      this.visibility = 'visible';
 
-    e.stopPropagation();
+      e.stopPropagation();
+      e.preventDefault();
+    }
   }
 
   close() {
