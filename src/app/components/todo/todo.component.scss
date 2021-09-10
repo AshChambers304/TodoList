@@ -66,13 +66,9 @@ fa-icon {
 }
 
 app-popup-menu {
-  transform: translate(-15vw, 0px);
-  min-width: 15vw;
+  transform: translate(-10vw, 0px);
+  min-width: 10vw;
   min-height: 10vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
 
   .title {
     margin: 1rem 0;
