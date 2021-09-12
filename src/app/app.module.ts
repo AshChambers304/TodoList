@@ -13,7 +13,7 @@ import { TodoService } from './services/todo.service';
 import { AddTodoDialogComponent } from './components/shared/dialogs/add-todo-dialog/add-todo-dialog.component';
 import { ModalModule } from './components/shared/modal/modal.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { PopupMenuComponent } from './components/shared/popup-menu/popup-menu.component';
+import { PopoverComponent } from './components/shared/popover/popover.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +23,7 @@ import { PopupMenuComponent } from './components/shared/popup-menu/popup-menu.co
     TodoListsComponent,
     AddListDialogComponent,
     AddTodoDialogComponent,
-    PopupMenuComponent,
+    PopoverComponent,
   ],
   entryComponents: [AddListDialogComponent, AddTodoDialogComponent],
   imports: [

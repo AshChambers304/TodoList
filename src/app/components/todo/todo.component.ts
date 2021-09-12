@@ -10,7 +10,6 @@ import {
 import { TodoList } from 'src/app/models/TodoList';
 import { ModalService } from 'src/app/services/modal.service';
 import { faEllipsisH } from '@fortawesome/free-solid-svg-icons';
-import { PopupMenuComponent } from '../shared/popup-menu/popup-menu.component';
 
 @Component({
   selector: 'app-todo',
@@ -34,19 +33,6 @@ export class TodoComponent implements OnInit {
 
   ngOnInit(): void {
     console.log('todo-selected-list: ' + this.selectedList);
-  }
-
-  @ViewChild(PopupMenuComponent) menu?: PopupMenuComponent;
-
-  openMenu(e: any) {
-    if (this.menu) {
-      this.menu.open(e);
-      console.log('menu opened');
-    }
-  }
-
-  itemSelected(item: number) {
-    console.log('Item', item);
   }
 
   handleTodoContentEmitter(todoContent: string) {

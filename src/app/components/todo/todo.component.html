@@ -2,11 +2,7 @@
   <ng-container *ngIf="selectedList">
     <div class="heading">
       <h1 class="title">{{ selectedList.title }}</h1>
-      <fa-icon
-        class="dot-menu"
-        [icon]="faEllipsisH"
-        (click)="openMenu($event)"
-      ></fa-icon>
+      <fa-icon class="dot-menu" [icon]="faEllipsisH"></fa-icon>
     </div>
     <div class="todos">
       <div
@@ -28,7 +24,7 @@
   </ng-container>
 </div>
 
-<app-popup-menu>
+<!--<app-popup-menu>
   <h2 class="title">Edit List</h2>
   <div class="items">
     <ul>
@@ -37,7 +33,7 @@
       <li>Delete List</li>
     </ul>
   </div>
-</app-popup-menu>
+</app-popup-menu>-->
 
 <app-modal id="new-todo-modal">
   <app-add-todo-dialog
