@@ -38,19 +38,26 @@ export class TodoComponent implements OnInit {
     new EventEmitter<number>();
   @Output() toggledDoneTodoEmitter: EventEmitter<number> =
     new EventEmitter<number>();
-  @Output() todoContentEmitter: EventEmitter<string> =
-    new EventEmitter<string>();
+  @Output() todoContentEmitter: EventEmitter<{
+    todoContent: string;
+    id: number;
+  }> = new EventEmitter<{ todoContent: string; id: number }>();
 
   ngOnInit(): void {
     console.log('todo-selected-list: ' + this.selectedList);
   }
 
   onSubmitTask() {
-    this.todoContentEmitter.emit(this.addTaskForm.get('inputTask')?.value);
-    this.addTaskForm.setValue({ inputTask: '' });
+    if (this.selectedList) {
+      this.todoContentEmitter.emit({
+        todoContent: this.addTaskForm.get('inputTask')?.value,
+        id: this.selectedList.id,
+      });
+      this.addTaskForm.setValue({ inputTask: '' });
+    }
   }
 
-  handleListRenameEmitter(newTitle: { title: string; ID: number | undefined }) {
+  handleListRenameEmitter(newTitle: { title: string; ID: number }) {
     this.listRenameEmitter.emit(newTitle);
   }
 

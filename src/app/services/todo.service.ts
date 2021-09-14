@@ -30,19 +30,27 @@ export class TodoService {
   }
 
   addList(newListTitle: string): void {
+    const newID = this.todoLists.length;
+
     this.todoLists.push({
-      id: this.todoLists.length,
+      id: newID,
       title: newListTitle,
       todos: [],
     });
 
-    localStorage.setItem('listToken', JSON.stringify(this.todoLists));
-    localStorage.setItem(
-      'selectedListToken',
-      JSON.stringify(this.selectedList)
-    );
+    const list = this.todoLists.find((list) => list.id === newID);
 
-    console.log(this.todoLists);
+    if (list) {
+      this.setSelectedList(list);
+
+      localStorage.setItem('listToken', JSON.stringify(this.todoLists));
+      localStorage.setItem(
+        'selectedListToken',
+        JSON.stringify(this.selectedList)
+      );
+    }
+
+    console.log(list);
   }
 
   renameList(newListTitle: { title: string; ID: number }): void {
@@ -62,7 +70,8 @@ export class TodoService {
   }
 
   deleteList(id: number): void {
-    this.todoLists = this.todoLists.filter((v, i) => i !== id);
+    this.todoLists = this.todoLists.filter((list) => list.id !== id);
+
     this.setSelectedList(null);
 
     localStorage.setItem('listToken', JSON.stringify(this.todoLists));
@@ -72,17 +81,27 @@ export class TodoService {
     );
   }
 
-  addTodo(newTodo: string): void {
-    this.selectedList?.todos.push({
-      content: newTodo,
-      completed: false,
-    });
+  addTodo(newTodo: { todoContent: string; id: number }): void {
+    const list = this.todoLists.find((list) => list.id === newTodo.id);
+    if (list) {
+      list.todos.push({
+        content: newTodo.todoContent,
+        completed: false,
+      });
 
-    localStorage.setItem('listToken', JSON.stringify(this.todoLists));
-    localStorage.setItem(
-      'selectedListToken',
-      JSON.stringify(this.selectedList)
-    );
+      if (this.selectedList) {
+        this.selectedList.todos.push({
+          content: newTodo.todoContent,
+          completed: false,
+        });
+      }
+
+      localStorage.setItem('listToken', JSON.stringify(this.todoLists));
+      localStorage.setItem(
+        'selectedListToken',
+        JSON.stringify(this.selectedList)
+      );
+    }
   }
 
   deleteTodo(id: number): void {

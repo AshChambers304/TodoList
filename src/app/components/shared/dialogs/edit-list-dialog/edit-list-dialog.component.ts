@@ -19,8 +19,8 @@ export class EditListDialogComponent implements OnInit {
   @Input() selectedList: TodoList | null = null;
   @Output() listRenameEmitter: EventEmitter<{
     title: string;
-    ID: number | undefined;
-  }> = new EventEmitter<{ title: string; ID: number | undefined }>();
+    ID: number;
+  }> = new EventEmitter<{ title: string; ID: number }>();
   @Output() closeModalEmitter: EventEmitter<string> =
     new EventEmitter<string>();
   @Output() listToDeleteEmitter: EventEmitter<number> =
@@ -29,18 +29,21 @@ export class EditListDialogComponent implements OnInit {
   ngOnInit(): void {}
 
   onSubmitTitle() {
-    this.listRenameEmitter.emit({
-      title: this.editTitleForm.get('inputTitle')?.value,
-      ID: this.selectedList?.id,
-    });
-    this.editTitleForm.setValue({ inputTitle: '' });
-    this.closeModalEmitter.emit('edit-list-modal');
+    if (this.selectedList) {
+      this.listRenameEmitter.emit({
+        title: this.editTitleForm.get('inputTitle')?.value,
+        ID: this.selectedList.id,
+      });
+      this.editTitleForm.setValue({ inputTitle: '' });
+      this.closeModalEmitter.emit('edit-list-modal');
+    }
   }
 
   onDelete() {
     if (this.selectedList) {
       this.listToDeleteEmitter.emit(this.selectedList.id);
       this.closeModalEmitter.emit('edit-list-modal');
+      console.log('delete ID: ' + this.selectedList.id);
     }
   }
 }

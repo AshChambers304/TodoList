@@ -42,7 +42,7 @@ export class AppComponent implements OnInit {
     this.todoService.toggleTodoDone(id);
   }
 
-  handleTodoContentEmitter(todoContent: string) {
+  handleTodoContentEmitter(todoContent: { todoContent: string; id: number }) {
     this.todoService.addTodo(todoContent);
   }
 }
