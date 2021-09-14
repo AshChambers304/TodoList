@@ -31,6 +31,7 @@ export class TodoService {
 
   addList(newListTitle: string): void {
     this.todoLists.push({
+      id: this.todoLists.length,
       title: newListTitle,
       todos: [],
     });
@@ -40,6 +41,24 @@ export class TodoService {
       'selectedListToken',
       JSON.stringify(this.selectedList)
     );
+
+    console.log(this.todoLists);
+  }
+
+  renameList(newListTitle: { title: string; ID: number }): void {
+    const list = this.todoLists.find((list) => list.id === newListTitle.ID);
+    if (list) {
+      list.title = newListTitle.title;
+      if (this.selectedList) {
+        this.selectedList.title = newListTitle.title;
+      }
+
+      localStorage.setItem('listToken', JSON.stringify(this.todoLists));
+      localStorage.setItem(
+        'selectedListToken',
+        JSON.stringify(this.selectedList)
+      );
+    }
   }
 
   deleteList(id: number): void {

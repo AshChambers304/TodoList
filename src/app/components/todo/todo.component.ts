@@ -4,12 +4,12 @@ import {
   Input,
   Output,
   EventEmitter,
-  ViewChild,
   ElementRef,
 } from '@angular/core';
 import { TodoList } from 'src/app/models/TodoList';
 import { ModalService } from 'src/app/services/modal.service';
 import { faEllipsisH } from '@fortawesome/free-solid-svg-icons';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-todo',
@@ -18,12 +18,22 @@ import { faEllipsisH } from '@fortawesome/free-solid-svg-icons';
 })
 export class TodoComponent implements OnInit {
   faEllipsisH = faEllipsisH;
+  addTaskForm: FormGroup;
 
-  constructor(private modalService: ModalService, elRef: ElementRef) {}
+  constructor(
+    private modalService: ModalService,
+    elRef: ElementRef,
+    private builder: FormBuilder
+  ) {
+    this.addTaskForm = this.builder.group({
+      inputTask: [null, Validators.required],
+    });
+  }
 
   @Input() selectedList: TodoList | null = null;
   @Output() listToDeleteEmitter: EventEmitter<number> =
     new EventEmitter<number>();
+  @Output() listRenameEmitter: EventEmitter<any> = new EventEmitter<any>();
   @Output() todoToDeleteEmitter: EventEmitter<number> =
     new EventEmitter<number>();
   @Output() toggledDoneTodoEmitter: EventEmitter<number> =
@@ -35,8 +45,17 @@ export class TodoComponent implements OnInit {
     console.log('todo-selected-list: ' + this.selectedList);
   }
 
-  handleTodoContentEmitter(todoContent: string) {
-    this.todoContentEmitter.emit(todoContent);
+  onSubmitTask() {
+    this.todoContentEmitter.emit(this.addTaskForm.get('inputTask')?.value);
+    this.addTaskForm.setValue({ inputTask: '' });
+  }
+
+  handleListRenameEmitter(newTitle: { title: string; ID: number | undefined }) {
+    this.listRenameEmitter.emit(newTitle);
+  }
+
+  handleListToDeleteEmitter(id: number) {
+    this.listToDeleteEmitter.emit(id);
   }
 
   handleCloseModalEmitter(id: string): void {

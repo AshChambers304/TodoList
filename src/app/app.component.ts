@@ -30,6 +30,10 @@ export class AppComponent implements OnInit {
     this.todoService.addList(listTitle);
   }
 
+  handleListRenameEmitter(listTitle: { title: string; ID: number }) {
+    this.todoService.renameList(listTitle);
+  }
+
   handleTodoToDeleteEmitter(id: number) {
     this.todoService.deleteTodo(id);
   }
