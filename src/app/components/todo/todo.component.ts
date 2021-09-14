@@ -4,13 +4,12 @@ import {
   Input,
   Output,
   EventEmitter,
-  ViewChild,
   ElementRef,
 } from '@angular/core';
 import { TodoList } from 'src/app/models/TodoList';
 import { ModalService } from 'src/app/services/modal.service';
 import { faEllipsisH } from '@fortawesome/free-solid-svg-icons';
-import { PopupMenuComponent } from '../shared/popup-menu/popup-menu.component';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-todo',
@@ -19,38 +18,51 @@ import { PopupMenuComponent } from '../shared/popup-menu/popup-menu.component';
 })
 export class TodoComponent implements OnInit {
   faEllipsisH = faEllipsisH;
+  addTaskForm: FormGroup;
 
-  constructor(private modalService: ModalService, elRef: ElementRef) {}
+  constructor(
+    private modalService: ModalService,
+    elRef: ElementRef,
+    private builder: FormBuilder
+  ) {
+    this.addTaskForm = this.builder.group({
+      inputTask: [null, Validators.required],
+    });
+  }
 
   @Input() selectedList: TodoList | null = null;
   @Output() listToDeleteEmitter: EventEmitter<number> =
     new EventEmitter<number>();
+  @Output() listRenameEmitter: EventEmitter<any> = new EventEmitter<any>();
   @Output() todoToDeleteEmitter: EventEmitter<number> =
     new EventEmitter<number>();
   @Output() toggledDoneTodoEmitter: EventEmitter<number> =
     new EventEmitter<number>();
-  @Output() todoContentEmitter: EventEmitter<string> =
-    new EventEmitter<string>();
+  @Output() todoContentEmitter: EventEmitter<{
+    todoContent: string;
+    id: number;
+  }> = new EventEmitter<{ todoContent: string; id: number }>();
 
   ngOnInit(): void {
     console.log('todo-selected-list: ' + this.selectedList);
   }
 
-  @ViewChild(PopupMenuComponent) menu?: PopupMenuComponent;
-
-  openMenu(e: any) {
-    if (this.menu) {
-      this.menu.open(e);
-      console.log('menu opened');
+  onSubmitTask() {
+    if (this.selectedList) {
+      this.todoContentEmitter.emit({
+        todoContent: this.addTaskForm.get('inputTask')?.value,
+        id: this.selectedList.id,
+      });
+      this.addTaskForm.setValue({ inputTask: '' });
     }
   }
 
-  itemSelected(item: number) {
-    console.log('Item', item);
+  handleListRenameEmitter(newTitle: { title: string; ID: number }) {
+    this.listRenameEmitter.emit(newTitle);
   }
 
-  handleTodoContentEmitter(todoContent: string) {
-    this.todoContentEmitter.emit(todoContent);
+  handleListToDeleteEmitter(id: number) {
+    this.listToDeleteEmitter.emit(id);
   }
 
   handleCloseModalEmitter(id: string): void {

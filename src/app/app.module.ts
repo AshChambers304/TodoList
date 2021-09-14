@@ -10,10 +10,9 @@ import { TodoComponent } from './components/todo/todo.component';
 import { TodoListsComponent } from './components/todo-lists/todo-lists.component';
 import { AddListDialogComponent } from './components/shared/dialogs/add-list-dialog/add-list-dialog.component';
 import { TodoService } from './services/todo.service';
-import { AddTodoDialogComponent } from './components/shared/dialogs/add-todo-dialog/add-todo-dialog.component';
+import { EditListDialogComponent } from './components/shared/dialogs/edit-list-dialog/edit-list-dialog.component';
 import { ModalModule } from './components/shared/modal/modal.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { PopupMenuComponent } from './components/shared/popup-menu/popup-menu.component';
 
 @NgModule({
   declarations: [
@@ -22,10 +21,9 @@ import { PopupMenuComponent } from './components/shared/popup-menu/popup-menu.co
     TodoComponent,
     TodoListsComponent,
     AddListDialogComponent,
-    AddTodoDialogComponent,
-    PopupMenuComponent,
+    EditListDialogComponent,
   ],
-  entryComponents: [AddListDialogComponent, AddTodoDialogComponent],
+  entryComponents: [AddListDialogComponent, EditListDialogComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

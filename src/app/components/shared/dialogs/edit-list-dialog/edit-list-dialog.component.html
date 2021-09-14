@@ -1,0 +1,26 @@
+<h2>Edit List</h2>
+
+<form [formGroup]="editTitleForm">
+  <p>Rename List</p>
+  <input
+    type="text"
+    name="inputTitle"
+    placeholder="Rename List"
+    class="list-input"
+    [formControlName]="'inputTitle'"
+    maxlength="170"
+  />
+  <button
+    type="submit"
+    value="Rename"
+    class="todo-submit"
+    [disabled]="editTitleForm.invalid"
+    (click)="onSubmitTitle()"
+  >
+    Rename
+  </button>
+
+  <button type="button" value="Delete" class="todo-submit" (click)="onDelete()">
+    Delete List
+  </button>
+</form>

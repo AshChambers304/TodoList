@@ -5,7 +5,7 @@
       <fa-icon
         class="dot-menu"
         [icon]="faEllipsisH"
-        (click)="openMenu($event)"
+        (click)="openModal('edit-list-modal')"
       ></fa-icon>
     </div>
     <div class="todos">
@@ -16,32 +16,39 @@
         <div class="content" (click)="toggleTodoDone(i)">
           {{ selectedList.content }}
         </div>
-        <button
-          color="primary"
-          class="delete todo-submit"
-          (click)="deleteTodo(i)"
-        >
+        <button class="delete todo-submit" (click)="deleteTodo(i)">
           Remove
         </button>
       </div>
     </div>
+    <form [formGroup]="addTaskForm">
+      <input
+        type="text"
+        name="inputTask"
+        placeholder="Add Task"
+        class="list-input"
+        [formControlName]="'inputTask'"
+        maxlength="170"
+      />
+
+      <button
+        type="submit"
+        value="Add Task"
+        class="todo-submit"
+        [disabled]="addTaskForm.invalid"
+        (click)="onSubmitTask()"
+      >
+        Add Task
+      </button>
+    </form>
   </ng-container>
 </div>
 
-<app-popup-menu>
-  <h2 class="title">Edit List</h2>
-  <div class="items">
-    <ul>
-      <li class="new-todo" (click)="openModal('new-todo-modal')">Add Task</li>
-      <li>Rename List</li>
-      <li>Delete List</li>
-    </ul>
-  </div>
-</app-popup-menu>
-
-<app-modal id="new-todo-modal">
-  <app-add-todo-dialog
-    (todoContentEmitter)="handleTodoContentEmitter($event)"
+<app-modal id="edit-list-modal">
+  <app-edit-list-dialog
+    [selectedList]="selectedList"
+    (listRenameEmitter)="handleListRenameEmitter($event)"
+    (listToDeleteEmitter)="handleListToDeleteEmitter($event)"
     (closeModalEmitter)="handleCloseModalEmitter($event)"
-  ></app-add-todo-dialog>
+  ></app-edit-list-dialog>
 </app-modal>
