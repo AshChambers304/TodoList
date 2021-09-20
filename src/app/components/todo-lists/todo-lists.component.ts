@@ -31,7 +31,7 @@ export class TodoListsComponent implements OnInit {
     this.modalService.close(id);
   }
 
-  handleListTitleEmitter(newListTitle: string) {
-    this.listTitleEmitter.emit(newListTitle);
+  handleListTitleEmitter(newList: string) {
+    this.listTitleEmitter.emit(newList);
   }
 }

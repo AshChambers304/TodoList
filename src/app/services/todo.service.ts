@@ -7,8 +7,8 @@ import { TodoList } from '../models/TodoList';
 export class TodoService {
   constructor() {
     this.todoLists = JSON.parse(localStorage.getItem('listToken') || '[]');
-    this.selectedList = JSON.parse(
-      localStorage.getItem('selectedListToken') || 'null'
+    this.setSelectedList(
+      JSON.parse(localStorage.getItem('selectedListToken') || 'null')
     );
 
     console.log(
@@ -20,12 +20,17 @@ export class TodoService {
   public todoLists: TodoList[] = [];
   public selectedList: TodoList | null = null;
 
-  setSelectedList(newSelectedList: TodoList | null): void {
-    this.selectedList = newSelectedList;
+  setSelectedList(newSelectedListID: number | undefined | null): void {
+    const list = this.todoLists.find((list) => list.id === newSelectedListID);
+    if (list) {
+      this.selectedList = list;
+    } else {
+      this.selectedList = null;
+    }
 
     localStorage.setItem(
       'selectedListToken',
-      JSON.stringify(this.selectedList)
+      JSON.stringify(this.selectedList?.id)
     );
   }
 
@@ -41,12 +46,12 @@ export class TodoService {
     const list = this.todoLists.find((list) => list.id === newID);
 
     if (list) {
-      this.setSelectedList(list);
+      this.setSelectedList(list.id);
 
       localStorage.setItem('listToken', JSON.stringify(this.todoLists));
       localStorage.setItem(
         'selectedListToken',
-        JSON.stringify(this.selectedList)
+        JSON.stringify(this.selectedList?.id)
       );
     }
 
@@ -64,7 +69,7 @@ export class TodoService {
       localStorage.setItem('listToken', JSON.stringify(this.todoLists));
       localStorage.setItem(
         'selectedListToken',
-        JSON.stringify(this.selectedList)
+        JSON.stringify(this.selectedList?.id)
       );
     }
   }
@@ -77,7 +82,7 @@ export class TodoService {
     localStorage.setItem('listToken', JSON.stringify(this.todoLists));
     localStorage.setItem(
       'selectedListToken',
-      JSON.stringify(this.selectedList)
+      JSON.stringify(this.selectedList?.id)
     );
   }
 
@@ -89,17 +94,12 @@ export class TodoService {
         completed: false,
       });
 
-      if (this.selectedList) {
-        this.selectedList.todos.push({
-          content: newTodo.todoContent,
-          completed: false,
-        });
-      }
+      this.setSelectedList(list.id);
 
       localStorage.setItem('listToken', JSON.stringify(this.todoLists));
       localStorage.setItem(
         'selectedListToken',
-        JSON.stringify(this.selectedList)
+        JSON.stringify(this.selectedList?.id)
       );
     }
   }
@@ -114,7 +114,7 @@ export class TodoService {
     localStorage.setItem('listToken', JSON.stringify(this.todoLists));
     localStorage.setItem(
       'selectedListToken',
-      JSON.stringify(this.selectedList)
+      JSON.stringify(this.selectedList?.id)
     );
   }
 
@@ -128,7 +128,7 @@ export class TodoService {
     localStorage.setItem('listToken', JSON.stringify(this.todoLists));
     localStorage.setItem(
       'selectedListToken',
-      JSON.stringify(this.selectedList)
+      JSON.stringify(this.selectedList?.id)
     );
   }
 }
