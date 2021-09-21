@@ -17,7 +17,9 @@ export class AppComponent implements OnInit {
 
   handleSelectedListEmitter(newSelectedList: TodoList | null): void {
     this.selectedList = newSelectedList;
-    this.todoService.setSelectedList(this.selectedList?.id);
+    if (this.selectedList) {
+      this.todoService.setSelectedList(this.selectedList.id);
+    }
   }
 
   handleListToDeleteEmitter(id: number): void {

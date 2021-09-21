@@ -43,9 +43,7 @@ export class TodoComponent implements OnInit {
     id: number;
   }> = new EventEmitter<{ todoContent: string; id: number }>();
 
-  ngOnInit(): void {
-    console.log('todo-selected-list: ' + this.selectedList);
-  }
+  ngOnInit(): void {}
 
   onSubmitTask() {
     if (this.selectedList) {

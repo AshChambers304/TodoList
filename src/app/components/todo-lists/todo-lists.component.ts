@@ -19,8 +19,7 @@ export class TodoListsComponent implements OnInit {
   ngOnInit(): void {}
 
   setSelectedList(newSelectedList: TodoList | null): void {
-    this.selectedList = newSelectedList;
-    this.selectedListEmitter.emit(this.selectedList);
+    this.selectedListEmitter.emit(newSelectedList);
   }
 
   openModal(id: string): void {
