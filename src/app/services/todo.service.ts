@@ -40,8 +40,6 @@ export class TodoService {
       todos: [],
     });
 
-    this.setSelectedList(newID);
-
     localStorage.setItem('listToken', JSON.stringify(this.todoLists));
 
     if (this.selectedList) {
