@@ -43,7 +43,6 @@ export class EditListDialogComponent implements OnInit {
     if (this.selectedList) {
       this.listToDeleteEmitter.emit(this.selectedList.id);
       this.closeModalEmitter.emit('edit-list-modal');
-      console.log('delete ID: ' + this.selectedList.id);
     }
   }
 }

@@ -7,26 +7,28 @@ import { TodoList } from '../models/TodoList';
 export class TodoService {
   constructor() {
     this.todoLists = JSON.parse(localStorage.getItem('listToken') || '[]');
-    this.selectedList = JSON.parse(
-      localStorage.getItem('selectedListToken') || 'null'
-    );
-
-    console.log(
-      'todo-lists: ' + this.todoLists,
-      'selected-list: ' + this.selectedList
+    this.setSelectedList(
+      JSON.parse(localStorage.getItem('selectedListToken') || 'null')
     );
   }
 
   public todoLists: TodoList[] = [];
   public selectedList: TodoList | null = null;
 
-  setSelectedList(newSelectedList: TodoList | null): void {
-    this.selectedList = newSelectedList;
+  setSelectedList(newSelectedListID: number | null): void {
+    const list = this.todoLists.find((list) => list.id === newSelectedListID);
+    if (list) {
+      this.selectedList = list;
+    } else {
+      this.selectedList = null;
+    }
 
-    localStorage.setItem(
-      'selectedListToken',
-      JSON.stringify(this.selectedList)
-    );
+    if (this.selectedList) {
+      localStorage.setItem(
+        'selectedListToken',
+        JSON.stringify(this.selectedList.id)
+      );
+    }
   }
 
   addList(newListTitle: string): void {
@@ -38,34 +40,29 @@ export class TodoService {
       todos: [],
     });
 
-    const list = this.todoLists.find((list) => list.id === newID);
+    localStorage.setItem('listToken', JSON.stringify(this.todoLists));
 
-    if (list) {
-      this.setSelectedList(list);
-
-      localStorage.setItem('listToken', JSON.stringify(this.todoLists));
+    if (this.selectedList) {
       localStorage.setItem(
         'selectedListToken',
-        JSON.stringify(this.selectedList)
+        JSON.stringify(this.selectedList.id)
       );
     }
-
-    console.log(list);
   }
 
   renameList(newListTitle: { title: string; ID: number }): void {
     const list = this.todoLists.find((list) => list.id === newListTitle.ID);
     if (list) {
       list.title = newListTitle.title;
-      if (this.selectedList) {
-        this.selectedList.title = newListTitle.title;
-      }
 
       localStorage.setItem('listToken', JSON.stringify(this.todoLists));
-      localStorage.setItem(
-        'selectedListToken',
-        JSON.stringify(this.selectedList)
-      );
+
+      if (this.selectedList) {
+        localStorage.setItem(
+          'selectedListToken',
+          JSON.stringify(this.selectedList.id)
+        );
+      }
     }
   }
 
@@ -75,32 +72,29 @@ export class TodoService {
     this.setSelectedList(null);
 
     localStorage.setItem('listToken', JSON.stringify(this.todoLists));
-    localStorage.setItem(
-      'selectedListToken',
-      JSON.stringify(this.selectedList)
-    );
+
+    localStorage.removeItem('selectedListToken');
   }
 
   addTodo(newTodo: { todoContent: string; id: number }): void {
+    let d = new Date();
+
     const list = this.todoLists.find((list) => list.id === newTodo.id);
     if (list) {
       list.todos.push({
         content: newTodo.todoContent,
         completed: false,
+        dueDate: d,
       });
 
-      if (this.selectedList) {
-        this.selectedList.todos.push({
-          content: newTodo.todoContent,
-          completed: false,
-        });
-      }
-
       localStorage.setItem('listToken', JSON.stringify(this.todoLists));
-      localStorage.setItem(
-        'selectedListToken',
-        JSON.stringify(this.selectedList)
-      );
+
+      if (this.selectedList) {
+        localStorage.setItem(
+          'selectedListToken',
+          JSON.stringify(this.selectedList.id)
+        );
+      }
     }
   }
 
@@ -112,10 +106,13 @@ export class TodoService {
     }
 
     localStorage.setItem('listToken', JSON.stringify(this.todoLists));
-    localStorage.setItem(
-      'selectedListToken',
-      JSON.stringify(this.selectedList)
-    );
+
+    if (this.selectedList) {
+      localStorage.setItem(
+        'selectedListToken',
+        JSON.stringify(this.selectedList.id)
+      );
+    }
   }
 
   toggleTodoDone(id: number): void {
@@ -126,9 +123,12 @@ export class TodoService {
     }
 
     localStorage.setItem('listToken', JSON.stringify(this.todoLists));
-    localStorage.setItem(
-      'selectedListToken',
-      JSON.stringify(this.selectedList)
-    );
+
+    if (this.selectedList) {
+      localStorage.setItem(
+        'selectedListToken',
+        JSON.stringify(this.selectedList.id)
+      );
+    }
   }
 }

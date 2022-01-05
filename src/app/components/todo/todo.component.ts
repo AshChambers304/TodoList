@@ -9,6 +9,9 @@ import {
 import { TodoList } from 'src/app/models/TodoList';
 import { ModalService } from 'src/app/services/modal.service';
 import { faEllipsisH } from '@fortawesome/free-solid-svg-icons';
+import { faTasks } from '@fortawesome/free-solid-svg-icons';
+import { faEdit } from '@fortawesome/free-solid-svg-icons';
+import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
@@ -18,6 +21,9 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 export class TodoComponent implements OnInit {
   faEllipsisH = faEllipsisH;
+  faTasks = faTasks;
+  faPlusCircle = faPlusCircle;
+  faEdit = faEdit;
   addTaskForm: FormGroup;
 
   constructor(
@@ -43,17 +49,14 @@ export class TodoComponent implements OnInit {
     id: number;
   }> = new EventEmitter<{ todoContent: string; id: number }>();
 
-  ngOnInit(): void {
-    console.log('todo-selected-list: ' + this.selectedList);
-  }
+  ngOnInit(): void {}
 
-  onSubmitTask() {
+  handleTaskEmitter(taskContent: string) {
     if (this.selectedList) {
       this.todoContentEmitter.emit({
-        todoContent: this.addTaskForm.get('inputTask')?.value,
+        todoContent: taskContent,
         id: this.selectedList.id,
       });
-      this.addTaskForm.setValue({ inputTask: '' });
     }
   }
 

@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { TodoList } from '../../models/TodoList';
 import { ModalService } from '../../services/modal.service';
+import { faTasks } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-todo-lists',
@@ -8,6 +9,8 @@ import { ModalService } from '../../services/modal.service';
   styleUrls: ['./todo-lists.component.scss'],
 })
 export class TodoListsComponent implements OnInit {
+  faTasks = faTasks;
+
   constructor(private modalService: ModalService) {}
 
   @Input() todoLists: TodoList[] = [];
@@ -19,8 +22,7 @@ export class TodoListsComponent implements OnInit {
   ngOnInit(): void {}
 
   setSelectedList(newSelectedList: TodoList | null): void {
-    this.selectedList = newSelectedList;
-    this.selectedListEmitter.emit(this.selectedList);
+    this.selectedListEmitter.emit(newSelectedList);
   }
 
   openModal(id: string): void {
@@ -31,7 +33,7 @@ export class TodoListsComponent implements OnInit {
     this.modalService.close(id);
   }
 
-  handleListTitleEmitter(newListTitle: string) {
-    this.listTitleEmitter.emit(newListTitle);
+  handleListTitleEmitter(newList: string) {
+    this.listTitleEmitter.emit(newList);
   }
 }
