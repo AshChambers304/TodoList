@@ -77,11 +77,14 @@ export class TodoService {
   }
 
   addTodo(newTodo: { todoContent: string; id: number }): void {
+    let d = new Date();
+
     const list = this.todoLists.find((list) => list.id === newTodo.id);
     if (list) {
       list.todos.push({
         content: newTodo.todoContent,
         completed: false,
+        dueDate: d,
       });
 
       localStorage.setItem('listToken', JSON.stringify(this.todoLists));

@@ -1,0 +1,23 @@
+<h2>New Task</h2>
+
+<p>What do you... need to Toodoo?</p>
+<form [formGroup]="taskForm">
+  <input
+    type="text"
+    name="taskContent"
+    placeholder="New Task..."
+    class="list-input"
+    [formControlName]="'taskContent'"
+    maxlength="100"
+  />
+
+  <button
+    type="submit"
+    value="Add Task"
+    class="todo-submit"
+    [disabled]="taskForm.invalid"
+    (click)="onSubmit()"
+  >
+    Add Task
+  </button>
+</form>

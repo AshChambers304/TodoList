@@ -1,5 +1,5 @@
 .todo-container {
-  min-height: 100vh;
+  height: 100vh;
   background-color: rgb(63, 63, 63);
 
   .todo {
@@ -58,9 +58,55 @@
   }
 }
 
+.no-tasks {
+  display: flex;
+  flex-direction: column;
+  padding: 15vh 0;
+  justify-content: center;
+  align-items: center;
+  color: white;
+
+  h2 {
+    margin-bottom: 1rem;
+  }
+
+  .no-tasks-icon {
+    font-size: 15rem;
+  }
+}
+
+.no-list {
+  display: flex;
+  flex-direction: column;
+  padding: 25vh 0;
+  justify-content: center;
+  align-items: center;
+  color: white;
+
+  h2 {
+    padding-bottom: 1rem;
+  }
+
+  .no-list-icon {
+    font-size: 15rem;
+  }
+}
+
 h1,
 p,
 span,
 fa-icon {
   color: rgb(255, 255, 255);
+}
+
+.add-task-container {
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.add-task-icon {
+  font-size: 5rem;
 }

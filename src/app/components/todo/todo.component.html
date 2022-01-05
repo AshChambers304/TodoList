@@ -1,4 +1,11 @@
 <div class="todo-container">
+  <ng-container *ngIf="!selectedList">
+    <div class="no-list">
+      <fa-icon class="no-list-icon" [icon]="faTasks"></fa-icon>
+      <h2>No list selected</h2>
+      <p>Create or select a list to get started!</p>
+    </div>
+  </ng-container>
   <ng-container *ngIf="selectedList">
     <div class="heading">
       <h1 class="title">{{ selectedList.title }}</h1>
@@ -8,6 +15,14 @@
         (click)="openModal('edit-list-modal')"
       ></fa-icon>
     </div>
+
+    <ng-container *ngIf="selectedList.todos.length == 0">
+      <div class="no-tasks">
+        <fa-icon class="no-tasks-icon" [icon]="faEdit"></fa-icon>
+        <h2>No tasks yet</h2>
+        <p>Click the add task icon below to get started!</p>
+      </div>
+    </ng-container>
     <div class="todos">
       <div
         *ngFor="let selectedList of selectedList.todos; let i = index"
@@ -15,32 +30,20 @@
       >
         <div class="content" (click)="toggleTodoDone(i)">
           {{ selectedList.content }}
+          {{ selectedList.dueDate }}
         </div>
         <button class="delete todo-submit" (click)="deleteTodo(i)">
           Remove
         </button>
       </div>
     </div>
-    <form [formGroup]="addTaskForm">
-      <input
-        type="text"
-        name="inputTask"
-        placeholder="Add Task"
-        class="list-input"
-        [formControlName]="'inputTask'"
-        maxlength="170"
-      />
-
-      <button
-        type="submit"
-        value="Add Task"
-        class="todo-submit"
-        [disabled]="addTaskForm.invalid"
-        (click)="onSubmitTask()"
-      >
-        Add Task
-      </button>
-    </form>
+    <div class="add-task-container">
+      <fa-icon
+        class="add-task-icon"
+        [icon]="faPlusCircle"
+        (click)="openModal('add-task-modal')"
+      ></fa-icon>
+    </div>
   </ng-container>
 </div>
 
@@ -51,4 +54,12 @@
     (listToDeleteEmitter)="handleListToDeleteEmitter($event)"
     (closeModalEmitter)="handleCloseModalEmitter($event)"
   ></app-edit-list-dialog>
+</app-modal>
+
+<app-modal id="add-task-modal">
+  <app-add-task-dialog
+    (taskEmitter)="handleTaskEmitter($event)"
+    (closeModalEmitter)="handleCloseModalEmitter($event)"
+  >
+  </app-add-task-dialog>
 </app-modal>

@@ -13,6 +13,7 @@ import { TodoService } from './services/todo.service';
 import { EditListDialogComponent } from './components/shared/dialogs/edit-list-dialog/edit-list-dialog.component';
 import { ModalModule } from './components/shared/modal/modal.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { AddTaskDialogComponent } from './components/shared/dialogs/add-task-dialog/add-task-dialog.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     TodoListsComponent,
     AddListDialogComponent,
     EditListDialogComponent,
+    AddTaskDialogComponent,
   ],
   entryComponents: [AddListDialogComponent, EditListDialogComponent],
   imports: [
