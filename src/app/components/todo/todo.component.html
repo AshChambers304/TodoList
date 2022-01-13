@@ -6,6 +6,7 @@
       <p>Create or select a list to get started!</p>
     </div>
   </ng-container>
+
   <ng-container *ngIf="selectedList">
     <div class="heading">
       <h1 class="title">{{ selectedList.title }}</h1>
@@ -23,6 +24,7 @@
         <p>Click the add task icon below to get started!</p>
       </div>
     </ng-container>
+
     <div class="todos">
       <div
         *ngFor="let selectedList of selectedList.todos; let i = index"

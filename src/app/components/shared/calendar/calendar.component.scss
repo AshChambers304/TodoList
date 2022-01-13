@@ -1,0 +1,59 @@
+.cal-container {
+  max-height: 300px;
+  max-width: 500px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  background-color: red;
+
+  .month {
+    background-color: green;
+  }
+}
+
+.cal-text {
+  color: white;
+  padding: 1rem;
+}
+
+.month-year {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 25px;
+  width: 100%;
+  background-color: blue;
+  .arrow-icon {
+    width: 10%;
+    text-align: center;
+  }
+  p {
+    width: 80%;
+    text-align: center;
+  }
+}
+
+.days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  min-height: 200px;
+  width: 100%;
+  color: white;
+}
+
+.days .day {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.selected-date {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 25px;
+  width: 100%;
+  background-color: purple;
+}
+
+.hidden {
+  display: none;
+}
