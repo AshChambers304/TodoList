@@ -46,15 +46,21 @@ export class TodoComponent implements OnInit {
     new EventEmitter<number>();
   @Output() todoContentEmitter: EventEmitter<{
     todoContent: string;
+    selectedDate: Date;
     id: number;
-  }> = new EventEmitter<{ todoContent: string; id: number }>();
+  }> = new EventEmitter<{
+    todoContent: string;
+    selectedDate: Date;
+    id: number;
+  }>();
 
   ngOnInit(): void {}
 
-  handleTaskEmitter(taskContent: string) {
+  handleTaskEmitter(taskContent: { content: string; selectedDate: Date }) {
     if (this.selectedList) {
       this.todoContentEmitter.emit({
-        todoContent: taskContent,
+        todoContent: taskContent.content,
+        selectedDate: taskContent.selectedDate,
         id: this.selectedList.id,
       });
     }

@@ -1,16 +1,15 @@
 .cal-container {
   max-height: 300px;
   max-width: 500px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  background-color: red;
+  box-shadow: 0 4px 3px 0 rgba(0, 0, 0, 0.473);
 
   .month {
-    background-color: green;
+    background-color: grey;
   }
 }
 
 .cal-text {
-  color: white;
+  color: black;
   padding: 1rem;
 }
 
@@ -20,7 +19,7 @@
   align-items: center;
   min-height: 25px;
   width: 100%;
-  background-color: blue;
+  background-color: grey;
   .arrow-icon {
     width: 10%;
     text-align: center;
@@ -28,6 +27,8 @@
   p {
     width: 80%;
     text-align: center;
+    color: white;
+    padding: 1rem;
   }
 }
 
@@ -36,7 +37,6 @@
   grid-template-columns: repeat(7, 1fr);
   min-height: 200px;
   width: 100%;
-  color: white;
 }
 
 .days .day {
@@ -51,7 +51,15 @@
   align-items: center;
   min-height: 25px;
   width: 100%;
-  background-color: purple;
+  background-color: darkgrey;
+  p {
+    color: white;
+    padding: 1rem;
+  }
+}
+
+.selected {
+  background-color: grey;
 }
 
 .hidden {

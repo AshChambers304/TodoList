@@ -1,6 +1,6 @@
 <div class="cal-container">
   <section class="selected-date" (click)="toggleCal()">
-    <p class="cal-text">{{ this.date }}</p>
+    <p class="cal-text" id="prevDate">{{ this.previewDate }}</p>
   </section>
   <div [ngClass]="{ hidden: calHidden == true }">
     <section class="month-year">
@@ -18,35 +18,6 @@
         (click)="nxtMonthClicked()"
       ></fa-icon>
     </section>
-    <section class="days">
-      <div class="day">1</div>
-      <div class="day">2</div>
-      <div class="day">3</div>
-      <div class="day">4</div>
-      <div class="day">5</div>
-      <div class="day">6</div>
-      <div class="day">7</div>
-      <div class="day">1</div>
-      <div class="day">2</div>
-      <div class="day">3</div>
-      <div class="day">4</div>
-      <div class="day">5</div>
-      <div class="day">6</div>
-      <div class="day">7</div>
-      <div class="day">1</div>
-      <div class="day">2</div>
-      <div class="day">3</div>
-      <div class="day">4</div>
-      <div class="day">5</div>
-      <div class="day">6</div>
-      <div class="day">7</div>
-      <div class="day">1</div>
-      <div class="day">2</div>
-      <div class="day">3</div>
-      <div class="day">4</div>
-      <div class="day">5</div>
-      <div class="day">6</div>
-      <div class="day">7</div>
-    </section>
+    <section class="days"></section>
   </div>
 </div>

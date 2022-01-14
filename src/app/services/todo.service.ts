@@ -76,15 +76,17 @@ export class TodoService {
     localStorage.removeItem('selectedListToken');
   }
 
-  addTodo(newTodo: { todoContent: string; id: number }): void {
-    let d = new Date();
-
+  addTodo(newTodo: {
+    todoContent: string;
+    selectedDate: Date;
+    id: number;
+  }): void {
     const list = this.todoLists.find((list) => list.id === newTodo.id);
     if (list) {
       list.todos.push({
         content: newTodo.todoContent,
+        dueDate: newTodo.selectedDate,
         completed: false,
-        dueDate: d,
       });
 
       localStorage.setItem('listToken', JSON.stringify(this.todoLists));

@@ -1,6 +1,13 @@
 <h2>New Task</h2>
 
 <p>What do you... need to Toodoo?</p>
+<div class="due-date">
+  <h3>Due Date</h3>
+  <app-calendar
+    (selectedDateEmitter)="handleSelectedDateEmitter($event)"
+  ></app-calendar>
+</div>
+
 <form [formGroup]="taskForm">
   <input
     type="text"
