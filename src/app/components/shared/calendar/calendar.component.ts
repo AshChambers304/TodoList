@@ -17,6 +17,7 @@ export class CalendarComponent implements OnInit {
   faArrowLeft = faArrowLeft;
   faArrowRight = faArrowRight;
   public calHidden = true;
+  public hoursHidden = true;
 
   public months = [
     'January',
@@ -37,6 +38,8 @@ export class CalendarComponent implements OnInit {
   public day = this.date.getDate();
   public month = this.date.getMonth();
   public year = this.date.getFullYear();
+  public hour = this.date.getHours();
+  public minute = this.date.getMinutes();
 
   public previewDate = this.formatDate(this.date);
 
@@ -44,6 +47,8 @@ export class CalendarComponent implements OnInit {
   public selectedDay = this.day;
   public selectedMonth = this.month;
   public selectedYear = this.year;
+  public selectedHour = this.hour;
+  public selectedMinute = this.minute;
 
   constructor(private renderer: Renderer2) {}
 
@@ -51,12 +56,17 @@ export class CalendarComponent implements OnInit {
 
   ngOnInit(): void {
     this.populateDates();
+    this.populateHours();
+    this.populateMinutes();
   }
 
-  toggleCal(): void {
-    if (this.calHidden == true) {
-      this.calHidden = false;
-    } else this.calHidden = true;
+  toggleMenu(elementID: string): void {
+    let elementToToggle = document.getElementById(elementID);
+    if (elementToToggle) {
+      if (elementToToggle.classList.contains('hidden')) {
+        this.renderer.removeClass(elementToToggle, 'hidden');
+      } else this.renderer.addClass(elementToToggle, 'hidden');
+    }
   }
 
   nxtMonthClicked(): void {
@@ -78,9 +88,10 @@ export class CalendarComponent implements OnInit {
   }
 
   populateDates(): void {
-    let elementsToRemove = document.getElementsByClassName('day');
-    while (elementsToRemove.length > 0) {
-      elementsToRemove[0].parentNode?.removeChild(elementsToRemove[0]);
+    let dayElements = document.getElementsByClassName('day');
+
+    while (dayElements.length > 0) {
+      dayElements[0].parentNode?.removeChild(dayElements[0]);
     }
 
     for (let i = 0; i < this.getLastDayOfMonth(); i++) {
@@ -104,18 +115,87 @@ export class CalendarComponent implements OnInit {
       }
 
       this.renderer.listen(dayElement, 'click', (event) => {
-        this.changeSelectedDate(i + 1);
+        this.day = i + 1;
+        this.changeSelectedDate();
       });
     }
   }
 
-  changeSelectedDate(newDay: number) {
-    this.selectedDate = new Date(
-      this.year + '-' + (this.month + 1) + '-' + newDay
+  populateHours(): void {
+    let hourElements = document.getElementsByClassName('hour');
+
+    while (hourElements.length > 0) {
+      hourElements[0].parentNode?.removeChild(hourElements[0]);
+    }
+
+    for (let i = 0; i < 24; i++) {
+      const hourElement = this.renderer.createElement('li');
+      this.renderer.addClass(hourElement, 'hour');
+
+      const text = this.renderer.createText(this.minTwoDigits(i.toString()));
+
+      this.renderer.appendChild(hourElement, text);
+      this.renderer.appendChild(
+        document.getElementsByClassName('hours')[0],
+        hourElement
+      );
+
+      if (this.selectedHour == i) {
+        this.renderer.addClass(hourElement, 'selected');
+      }
+
+      this.renderer.listen(hourElement, 'click', (event) => {
+        this.hour = i;
+        this.changeSelectedDate();
+      });
+    }
+  }
+
+  populateMinutes(): void {
+    let minuteElements = document.getElementsByClassName('minute');
+
+    while (minuteElements.length > 0) {
+      minuteElements[0].parentNode?.removeChild(minuteElements[0]);
+    }
+
+    for (let i = 0; i < 60; i++) {
+      const minuteElement = this.renderer.createElement('li');
+      this.renderer.addClass(minuteElement, 'minute');
+
+      const text = this.renderer.createText(this.minTwoDigits(i.toString()));
+
+      this.renderer.appendChild(minuteElement, text);
+      this.renderer.appendChild(
+        document.getElementsByClassName('minutes')[0],
+        minuteElement
+      );
+
+      if (this.selectedMinute == i) {
+        this.renderer.addClass(minuteElement, 'selected');
+      }
+
+      this.renderer.listen(minuteElement, 'click', (event) => {
+        this.minute = i;
+        this.changeSelectedDate();
+      });
+    }
+  }
+
+  changeSelectedDate() {
+    let newDateString = new Date(
+      `${this.year}-${this.minTwoDigits(this.month + 1)}-${this.minTwoDigits(
+        this.day
+      )}T${this.minTwoDigits(this.hour)}:${this.minTwoDigits(this.minute)}:00Z`
     );
-    this.selectedDay = newDay;
+
+    console.log(newDateString);
+
+    this.selectedDate = newDateString;
+    this.selectedDay = this.day;
     this.selectedMonth = this.month;
     this.selectedYear = this.year;
+    this.selectedHour = this.hour;
+    this.selectedMinute = this.minute;
     this.previewDate = this.formatDate(this.selectedDate);
     this.renderer.setAttribute(
       document.getElementById('prevDate'),
@@ -123,6 +203,7 @@ export class CalendarComponent implements OnInit {
       this.selectedDate.toString()
     );
     this.populateDates();
+    this.populateHours();
     this.selectedDateEmitter.emit(this.selectedDate);
   }
 
@@ -143,12 +224,20 @@ export class CalendarComponent implements OnInit {
 
     let year = d.getFullYear();
 
+    let hour = d.getHours();
+
+    let minute = d.getMinutes();
+
     return (
       this.minTwoDigits(day) +
       ' / ' +
       this.minTwoDigits(month + 1) +
       ' / ' +
-      year
+      year +
+      ' : ' +
+      this.minTwoDigits(hour) +
+      ':' +
+      this.minTwoDigits(minute)
     );
   }
 }

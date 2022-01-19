@@ -1,8 +1,8 @@
 <div class="cal-container">
-  <section class="selected-date" (click)="toggleCal()">
+  <section class="selected-date" (click)="toggleMenu('date-time-picker')">
     <p class="cal-text" id="prevDate">{{ this.previewDate }}</p>
   </section>
-  <div [ngClass]="{ hidden: calHidden == true }">
+  <div id="date-time-picker">
     <section class="month-year">
       <fa-icon
         class="arrow-icon"
@@ -19,5 +19,21 @@
       ></fa-icon>
     </section>
     <section class="days"></section>
+    <section class="time">
+      <h3>Due Time:</h3>
+      <div class="hour-menu">
+        <h3 (click)="toggleMenu('hour-picker')">
+          {{ this.minTwoDigits(this.selectedDate.getHours()) }}
+        </h3>
+        <ul class="hours scrollable-vertical-menu" id="hour-picker"></ul>
+      </div>
+      :
+      <div class="minute-menu">
+        <h3 (click)="toggleMenu('minute-picker')">
+          {{ this.minTwoDigits(this.selectedDate.getMinutes()) }}
+        </h3>
+        <ul class="minutes scrollable-vertical-menu" id="minute-picker"></ul>
+      </div>
+    </section>
   </div>
 </div>

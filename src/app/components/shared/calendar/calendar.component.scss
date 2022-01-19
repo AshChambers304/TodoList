@@ -1,7 +1,13 @@
 .cal-container {
-  max-height: 300px;
+  max-height: 500px;
   max-width: 500px;
-  box-shadow: 0 4px 3px 0 rgba(0, 0, 0, 0.473);
+
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.726);
+  transition: 0.3s;
+
+  .cal-container:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.911);
+  }
 
   .month {
     background-color: grey;
@@ -45,6 +51,19 @@
   align-items: center;
 }
 
+.time {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top: 1px solid grey;
+
+  .hour-menu,
+  .minute-menu {
+    margin: 1rem;
+    min-height: 25px;
+  }
+}
+
 .selected-date {
   display: flex;
   justify-content: center;
@@ -60,6 +79,14 @@
 
 .selected {
   background-color: grey;
+}
+
+.scrollable-vertical-menu {
+  display: flex;
+  flex-direction: column;
+  width: 50px;
+  height: 60px;
+  overflow-y: auto;
 }
 
 .hidden {
