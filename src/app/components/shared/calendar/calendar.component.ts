@@ -58,6 +58,9 @@ export class CalendarComponent implements OnInit {
     this.populateDates();
     this.populateHours();
     this.populateMinutes();
+    this.toggleMenu('date-time-picker');
+    this.toggleMenu('hour-picker');
+    this.toggleMenu('minute-picker');
   }
 
   toggleMenu(elementID: string): void {
@@ -146,6 +149,7 @@ export class CalendarComponent implements OnInit {
 
       this.renderer.listen(hourElement, 'click', (event) => {
         this.hour = i;
+        this.toggleMenu('hour-picker');
         this.changeSelectedDate();
       });
     }
@@ -176,6 +180,7 @@ export class CalendarComponent implements OnInit {
 
       this.renderer.listen(minuteElement, 'click', (event) => {
         this.minute = i;
+        this.toggleMenu('minute-picker');
         this.changeSelectedDate();
       });
     }
