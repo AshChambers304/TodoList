@@ -190,7 +190,7 @@ export class CalendarComponent implements OnInit {
     let newDateString = new Date(
       `${this.year}-${this.minTwoDigits(this.month + 1)}-${this.minTwoDigits(
         this.day
-      )}T${this.minTwoDigits(this.hour)}:${this.minTwoDigits(this.minute)}:00Z`
+      )}T${this.minTwoDigits(this.hour)}:${this.minTwoDigits(this.minute)}:00`
     );
 
     console.log(newDateString.toUTCString());
