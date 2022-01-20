@@ -16,6 +16,7 @@ import { ModalService } from '../../../services/modal.service';
 })
 export class ModalComponent implements OnInit, OnDestroy {
   @Input() id: string = '';
+  @Input() elementToFocus: string = '';
   private element: any;
 
   constructor(private modalService: ModalService, private el: ElementRef) {
@@ -47,6 +48,7 @@ export class ModalComponent implements OnInit, OnDestroy {
   open(): void {
     this.element.style.display = 'block';
     document.body.classList.add('modal-open');
+    this.modalService.focusElement(this.elementToFocus);
   }
 
   close(): void {

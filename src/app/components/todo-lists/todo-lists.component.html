@@ -7,7 +7,7 @@
   <p class="new-list" (click)="openModal('new-list-modal')">+ New List</p>
 </div>
 
-<app-modal id="new-list-modal">
+<app-modal id="new-list-modal" [elementToFocus]="'new-list-content'">
   <app-add-list-dialog
     (listTitleEmitter)="handleListTitleEmitter($event)"
     (closeModalEmitter)="handleCloseModalEmitter($event)"

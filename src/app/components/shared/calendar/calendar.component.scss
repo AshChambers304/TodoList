@@ -38,6 +38,10 @@
   }
 }
 
+.arrow-icon:hover {
+  cursor: pointer;
+}
+
 .days {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
@@ -51,6 +55,10 @@
   align-items: center;
 }
 
+.day:hover {
+  cursor: pointer;
+}
+
 .time {
   display: flex;
   justify-content: center;
@@ -61,6 +69,10 @@
   .minute-menu {
     margin: 1rem;
     min-height: 25px;
+
+    :hover {
+      cursor: pointer;
+    }
   }
 }
 
@@ -75,6 +87,10 @@
     color: white;
     padding: 1rem;
   }
+}
+
+.selected-date:hover {
+  cursor: pointer;
 }
 
 .selected {

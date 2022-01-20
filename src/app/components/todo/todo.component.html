@@ -53,7 +53,7 @@
   </ng-container>
 </div>
 
-<app-modal id="edit-list-modal">
+<app-modal id="edit-list-modal" [elementToFocus]="'new-title'">
   <app-edit-list-dialog
     [selectedList]="selectedList"
     (listRenameEmitter)="handleListRenameEmitter($event)"
@@ -62,7 +62,7 @@
   ></app-edit-list-dialog>
 </app-modal>
 
-<app-modal id="add-task-modal">
+<app-modal id="add-task-modal" [elementToFocus]="'content-text'">
   <app-add-task-dialog
     (taskEmitter)="handleTaskEmitter($event)"
     (closeModalEmitter)="handleCloseModalEmitter($event)"
