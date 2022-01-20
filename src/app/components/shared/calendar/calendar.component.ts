@@ -41,8 +41,6 @@ export class CalendarComponent implements OnInit {
   public hour = this.date.getHours();
   public minute = this.date.getMinutes();
 
-  public previewDate = this.formatDate(this.date);
-
   public selectedDate = this.date;
   public selectedDay = this.day;
   public selectedMonth = this.month;
@@ -187,21 +185,18 @@ export class CalendarComponent implements OnInit {
   }
 
   changeSelectedDate() {
-    let newDateString = new Date(
+    let newDate = new Date(
       `${this.year}-${this.minTwoDigits(this.month + 1)}-${this.minTwoDigits(
         this.day
       )}T${this.minTwoDigits(this.hour)}:${this.minTwoDigits(this.minute)}:00`
     );
 
-    console.log(newDateString.toUTCString());
-
-    this.selectedDate = newDateString;
+    this.selectedDate = newDate;
     this.selectedDay = this.day;
     this.selectedMonth = this.month;
     this.selectedYear = this.year;
     this.selectedHour = this.hour;
     this.selectedMinute = this.minute;
-    this.previewDate = this.formatDate(this.selectedDate);
     this.renderer.setAttribute(
       document.getElementById('prevDate'),
       'dataset',
@@ -220,29 +215,5 @@ export class CalendarComponent implements OnInit {
 
   minTwoDigits(n: any) {
     return (n < 10 ? '0' : '') + n;
-  }
-
-  formatDate(d: Date): string {
-    let day = d.getDate();
-
-    let month = d.getMonth();
-
-    let year = d.getFullYear();
-
-    let hour = d.getHours();
-
-    let minute = d.getMinutes();
-
-    return (
-      this.minTwoDigits(day) +
-      ' / ' +
-      this.minTwoDigits(month + 1) +
-      ' / ' +
-      year +
-      ' : ' +
-      this.minTwoDigits(hour) +
-      ':' +
-      this.minTwoDigits(minute)
-    );
   }
 }

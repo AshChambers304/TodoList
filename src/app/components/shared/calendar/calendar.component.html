@@ -1,6 +1,8 @@
 <div class="cal-container">
   <section class="selected-date" (click)="toggleMenu('date-time-picker')">
-    <p class="cal-text" id="prevDate">{{ this.previewDate }}</p>
+    <p class="cal-text" id="prevDate">
+      {{ this.selectedDate.toUTCString().slice(0, 22) }}
+    </p>
   </section>
   <div id="date-time-picker">
     <section class="month-year">
