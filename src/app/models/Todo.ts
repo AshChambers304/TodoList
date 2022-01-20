@@ -1,7 +1,7 @@
 export class Todo {
   constructor(
     public content: string,
-    public dueDate: Date,
+    public dueDate: string,
     public completed: boolean
   ) {}
 }

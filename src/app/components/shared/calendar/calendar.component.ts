@@ -193,7 +193,7 @@ export class CalendarComponent implements OnInit {
       )}T${this.minTwoDigits(this.hour)}:${this.minTwoDigits(this.minute)}:00Z`
     );
 
-    console.log(newDateString);
+    console.log(newDateString.toUTCString());
 
     this.selectedDate = newDateString;
     this.selectedDay = this.day;

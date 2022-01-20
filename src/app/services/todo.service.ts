@@ -85,7 +85,7 @@ export class TodoService {
     if (list) {
       list.todos.push({
         content: newTodo.todoContent,
-        dueDate: newTodo.selectedDate,
+        dueDate: newTodo.selectedDate.toUTCString(),
         completed: false,
       });
 
