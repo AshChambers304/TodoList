@@ -25,14 +25,14 @@
       <h3>Due Time:</h3>
       <div class="hour-menu">
         <h3 (click)="toggleMenu('hour-picker')">
-          {{ this.minTwoDigits(this.selectedDate.getHours()) }}
+          {{ this.minTwoDigits(this.selectedHour) }}
         </h3>
         <ul class="hours scrollable-vertical-menu" id="hour-picker"></ul>
       </div>
       :
       <div class="minute-menu">
         <h3 (click)="toggleMenu('minute-picker')">
-          {{ this.minTwoDigits(this.selectedDate.getMinutes()) }}
+          {{ this.minTwoDigits(this.selectedMinute) }}
         </h3>
         <ul class="minutes scrollable-vertical-menu" id="minute-picker"></ul>
       </div>
