@@ -1,24 +1,31 @@
 .todo-lists {
   display: flex;
-  .list {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    padding: 0 1rem;
+}
 
-    :hover {
-      cursor: pointer;
-    }
-  }
-  .new-list:hover {
-    cursor: pointer;
+.list,
+.new-list {
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 1rem;
+
+  cursor: pointer;
+}
+
+.active {
+  color: #3eb489;
+  .active-list {
+    transform: scale(1.1);
   }
 }
 
-.title {
-  display: flex;
-  align-items: center;
-  padding: 10px 15px;
+.active-list {
+  width: 100%;
+  min-height: 10px;
+  border-bottom: 5px solid #3eb489;
+  transform: scale(0);
+  transition: all 0.2s ease-in-out;
 }
 
 h1,

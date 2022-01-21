@@ -1,4 +1,12 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  AfterViewInit,
+  Input,
+  Output,
+  EventEmitter,
+  Renderer2,
+} from '@angular/core';
 import { TodoList } from '../../models/TodoList';
 import { ModalService } from '../../services/modal.service';
 import { faTasks } from '@fortawesome/free-solid-svg-icons';
@@ -8,10 +16,13 @@ import { faTasks } from '@fortawesome/free-solid-svg-icons';
   templateUrl: './todo-lists.component.html',
   styleUrls: ['./todo-lists.component.scss'],
 })
-export class TodoListsComponent implements OnInit {
+export class TodoListsComponent implements AfterViewInit {
   faTasks = faTasks;
 
-  constructor(private modalService: ModalService) {}
+  constructor(
+    private modalService: ModalService,
+    private renderer: Renderer2
+  ) {}
 
   @Input() todoLists: TodoList[] = [];
   @Input() selectedList: TodoList | null = null;
@@ -19,10 +30,24 @@ export class TodoListsComponent implements OnInit {
     new EventEmitter<TodoList | null>();
   @Output() listTitleEmitter: EventEmitter<string> = new EventEmitter<string>();
 
-  ngOnInit(): void {}
+  ngAfterViewInit(): void {
+    if (this.selectedList) {
+      this.setListStyling(this.selectedList.id);
+    }
+  }
 
   setSelectedList(newSelectedList: TodoList | null): void {
     this.selectedListEmitter.emit(newSelectedList);
+  }
+
+  setListStyling(elementID: number): void {
+    let listElements = document.getElementsByClassName('list');
+
+    for (let i = 0; i < listElements.length; i++) {
+      if (i == elementID) {
+        this.renderer.addClass(listElements[i], 'active');
+      } else this.renderer.removeClass(listElements[i], 'active');
+    }
   }
 
   openModal(id: string): void {

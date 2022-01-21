@@ -38,4 +38,8 @@ export class AddTaskDialogComponent implements OnInit {
     this.taskForm.setValue({ taskContent: '' });
     this.closeModalEmitter.emit('add-task-modal');
   }
+
+  onCancel() {
+    this.closeModalEmitter.emit('add-task-modal');
+  }
 }

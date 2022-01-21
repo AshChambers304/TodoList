@@ -1,31 +1,43 @@
-<h2>New Task</h2>
-
-<p>What do you... need Toodoo?</p>
-<div class="due-date">
-  <h3>Due Date</h3>
-  <app-calendar
-    (selectedDateEmitter)="handleSelectedDateEmitter($event)"
-  ></app-calendar>
+<div class="dialog-title">
+  <h2>New Task</h2>
 </div>
 
-<form [formGroup]="taskForm">
+<form class="dialog-form" [formGroup]="taskForm">
   <input
     type="text"
     name="taskContent"
-    placeholder="New Task..."
-    class="list-input"
+    placeholder="What do you.. need TooDoo?"
+    class="task-content"
     id="content-text"
     [formControlName]="'taskContent'"
     maxlength="100"
   />
 
-  <button
-    type="submit"
-    value="Add Task"
-    class="todo-submit"
-    [disabled]="taskForm.invalid"
-    (click)="onSubmit()"
-  >
-    Add Task
-  </button>
+  <div class="due-date">
+    <h3>Due Date</h3>
+    <app-calendar
+      (selectedDateEmitter)="handleSelectedDateEmitter($event)"
+    ></app-calendar>
+  </div>
+
+  <div class="buttons">
+    <button
+      type="button"
+      value="Cancel"
+      class="button cancel"
+      (click)="onCancel()"
+    >
+      Cancel
+    </button>
+
+    <button
+      type="submit"
+      value="Add Task"
+      class="button submit"
+      [disabled]="taskForm.invalid"
+      (click)="onSubmit()"
+    >
+      Confirm
+    </button>
+  </div>
 </form>

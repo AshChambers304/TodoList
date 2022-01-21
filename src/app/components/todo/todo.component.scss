@@ -101,6 +101,15 @@ fa-icon {
   color: rgb(255, 255, 255);
 }
 
+.dot-menu {
+  margin-right: 1rem;
+  margin-top: 1rem;
+  position: absolute;
+  right: 0;
+
+  cursor: pointer;
+}
+
 .add-task-container {
   display: flex;
   justify-content: center;
@@ -110,5 +119,11 @@ fa-icon {
 }
 
 .add-task-icon {
+  transition: all 356ms ease-in-out;
   font-size: 5rem;
+  cursor: pointer;
+}
+
+.add-task-icon:hover {
+  color: #3eb489;
 }

@@ -8,12 +8,11 @@ app-modal {
     z-index: 1000;
     min-height: 25vh;
     min-width: 25vw;
-    border-radius: 1.5rem;
+    border-radius: 0.25rem;
     overflow: auto;
 
     .modal-content {
       background: rgb(48, 48, 48);
-      padding: 5rem;
     }
   }
 

@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { TodoList } from 'src/app/models/TodoList';
 
 @Component({
@@ -9,6 +10,7 @@ import { TodoList } from 'src/app/models/TodoList';
 })
 export class EditListDialogComponent implements OnInit {
   editTitleForm: FormGroup;
+  faTrash = faTrash;
 
   constructor(private builder: FormBuilder) {
     this.editTitleForm = this.builder.group({
@@ -37,6 +39,10 @@ export class EditListDialogComponent implements OnInit {
       this.editTitleForm.setValue({ inputTitle: '' });
       this.closeModalEmitter.emit('edit-list-modal');
     }
+  }
+
+  onCancel() {
+    this.closeModalEmitter.emit('edit-list-modal');
   }
 
   onDelete() {

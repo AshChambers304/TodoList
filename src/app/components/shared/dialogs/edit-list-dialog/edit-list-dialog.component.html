@@ -1,27 +1,40 @@
-<h2>Edit List</h2>
+<div class="dialog-title">
+  <h2>Edit List</h2>
+</div>
 
-<form [formGroup]="editTitleForm">
-  <p>Rename List</p>
+<form class="dialog-form" [formGroup]="editTitleForm">
   <input
     type="text"
     name="inputTitle"
     placeholder="Rename List"
-    class="list-input"
+    class="list-title"
     id="new-title"
     [formControlName]="'inputTitle'"
     maxlength="170"
   />
-  <button
-    type="submit"
-    value="Rename"
-    class="todo-submit"
-    [disabled]="editTitleForm.invalid"
-    (click)="onSubmitTitle()"
-  >
-    Rename
-  </button>
-
-  <button type="button" value="Delete" class="todo-submit" (click)="onDelete()">
-    Delete List
-  </button>
+  <div class="buttons">
+    <span class="delete" (click)="onDelete()">
+      <fa-icon class="delete-icon" [icon]="faTrash"></fa-icon>
+      Delete
+    </span>
+    <div class="cta">
+      <button
+        type="button"
+        value="Cancel"
+        class="button cancel"
+        (click)="onCancel()"
+      >
+        Cancel
+      </button>
+      <button
+        type="submit"
+        value="Rename"
+        class="button submit"
+        [disabled]="editTitleForm.invalid"
+        (click)="onSubmitTitle()"
+      >
+        Confirm
+      </button>
+    </div>
+  </div>
 </form>

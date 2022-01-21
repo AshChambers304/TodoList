@@ -2,15 +2,84 @@
   color: white;
 }
 
-h2,
-p {
-  margin-bottom: 2rem;
+.dialog-title {
+  width: 100%;
+  background-color: rgb(41, 41, 41);
+
+  h2 {
+    padding: 2rem;
+    color: #3eb489;
+  }
 }
 
-input {
-  color: black;
+h3 {
+  padding: 1rem 0;
+  color: #3eb489;
 }
 
 .due-date {
-  margin-bottom: 2rem;
+  padding: 2rem;
+}
+
+.task-content {
+  margin: 0 2rem;
+  padding: 1rem;
+  outline: none;
+  border: none;
+  min-height: 25px;
+  border-radius: 0.5rem;
+  background-color: rgb(39, 39, 39);
+  cursor: pointer;
+}
+
+.dialog-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 2rem 0;
+
+  .buttons {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: flex-end;
+
+    .button {
+      transition: all 356ms ease-in-out;
+      min-width: 100px;
+      padding: 1rem;
+      margin: 1rem;
+      border: none;
+      border-radius: 0.25rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .submit {
+      background-color: #3eb489;
+      color: white;
+    }
+
+    .delete {
+      background-color: #d11a2a;
+    }
+
+    .cancel {
+      background-color: rgb(83, 83, 83);
+    }
+
+    .submit:hover {
+      background-color: #328f6d;
+    }
+
+    .delete:hover {
+      background-color: #6d1018;
+    }
+
+    .cancel:hover {
+      background-color: rgb(65, 65, 65);
+    }
+
+    .button:hover {
+      border-radius: 0.5rem;
+    }
+  }
 }
