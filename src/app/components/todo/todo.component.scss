@@ -57,7 +57,8 @@
     opacity: 0.75;
     transition: all 356ms ease-in-out;
 
-    &:hover {
+    &:hover,
+    &:active {
       transform: scale(1.25);
       opacity: 1;
       cursor: pointer;
