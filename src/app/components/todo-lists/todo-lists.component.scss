@@ -1,6 +1,7 @@
 .todo-lists {
   display: flex;
   overflow-x: auto;
+  overflow-y: hidden;
 }
 
 .list,
