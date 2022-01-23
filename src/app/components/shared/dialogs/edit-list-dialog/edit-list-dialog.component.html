@@ -1,5 +1,8 @@
 <div class="dialog-title">
   <h2>Edit List</h2>
+  <div class="delete" (click)="onDelete()">
+    <fa-icon [icon]="faTrash"></fa-icon>
+  </div>
 </div>
 
 <form class="dialog-form" [formGroup]="editTitleForm">
@@ -13,10 +16,6 @@
     maxlength="170"
   />
   <div class="buttons">
-    <div class="delete button" (click)="onDelete()">
-      <fa-icon [icon]="faTrash"></fa-icon>
-      Delete
-    </div>
     <button
       type="button"
       value="Cancel"

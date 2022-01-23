@@ -56,13 +56,13 @@
     font-size: 1.5rem;
     opacity: 0.75;
     transition: all 356ms ease-in-out;
+    color: #e75353;
 
     &:hover,
     &:active {
       transform: scale(1.25);
       opacity: 1;
       cursor: pointer;
-      color: #e75353;
     }
   }
 
