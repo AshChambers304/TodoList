@@ -13,28 +13,26 @@
     maxlength="170"
   />
   <div class="buttons">
-    <div class="delete" (click)="onDelete()">
+    <div class="delete button" (click)="onDelete()">
       <fa-icon [icon]="faTrash"></fa-icon>
       Delete
     </div>
-    <div class="cta">
-      <button
-        type="button"
-        value="Cancel"
-        class="button cancel"
-        (click)="onCancel()"
-      >
-        Cancel
-      </button>
-      <button
-        type="submit"
-        value="Rename"
-        class="button submit"
-        [disabled]="editTitleForm.invalid"
-        (click)="onSubmitTitle()"
-      >
-        Confirm
-      </button>
-    </div>
+    <button
+      type="button"
+      value="Cancel"
+      class="button cancel"
+      (click)="onCancel()"
+    >
+      Cancel
+    </button>
+    <button
+      type="submit"
+      value="Rename"
+      class="button submit"
+      [disabled]="editTitleForm.invalid"
+      (click)="onSubmitTitle()"
+    >
+      Confirm
+    </button>
   </div>
 </form>

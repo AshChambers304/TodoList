@@ -77,6 +77,19 @@ input[type="text"] {
     .submit {
       background-color: #3eb489;
       opacity: 0.65;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+
+    .cancel {
+      background-color: rgb(83, 83, 83);
+      opacity: 0.65;
+
+      &:hover {
+        opacity: 1;
+      }
     }
 
     .delete {
@@ -87,23 +100,11 @@ input[type="text"] {
       cursor: pointer;
       opacity: 0.65;
       transform: scale(1);
-    }
 
-    .cancel {
-      background-color: rgb(83, 83, 83);
-      opacity: 0.65;
-    }
-
-    .submit:hover {
-      opacity: 1;
-    }
-    .delete:hover {
-      transform: scale(1.1);
-      opacity: 1;
-    }
-
-    .cancel:hover {
-      opacity: 1;
+      &:hover {
+        transform: scale(1.1);
+        opacity: 1;
+      }
     }
   }
 }
