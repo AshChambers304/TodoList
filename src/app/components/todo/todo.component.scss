@@ -6,12 +6,13 @@
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    padding: 1rem;
+    padding: 2rem 1rem;
     color: white;
   }
 
   .todo.done .content {
     text-decoration: line-through;
+    text-decoration-color: #3eb489;
   }
 
   .todo-info {
@@ -23,14 +24,24 @@
   .content {
     width: fit-content;
     cursor: pointer;
+    transition: all 356ms ease-in-out;
+    &:hover {
+      transform: scale(1.1);
+    }
   }
 
   .due-date {
     width: fit-content;
     margin-top: 0.25rem;
+    font-size: 0.85rem;
+    span,
+    fa-icon {
+      color: #3eb489;
+    }
 
-    font-size: 0.75rem;
-    color: darkgrey;
+    fa-icon {
+      margin-right: 0.25rem;
+    }
   }
 
   .todo-input {
@@ -41,14 +52,17 @@
     font-size: 20px;
   }
 
-  .todo-submit {
-    display: block;
-    width: 100%;
-    max-width: 200px;
-    margin: 15px auto;
-    padding: 10px 15px;
-    font-size: 18px;
-    font-weight: 700;
+  .delete {
+    font-size: 1.5rem;
+    opacity: 0.75;
+    transition: all 356ms ease-in-out;
+
+    &:hover {
+      transform: scale(1.25);
+      opacity: 1;
+      cursor: pointer;
+      color: #e75353;
+    }
   }
 
   .heading {

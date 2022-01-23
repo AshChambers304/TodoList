@@ -34,12 +34,13 @@
             {{ selectedList.content }}
           </div>
           <div class="due-date">
-            {{ this.selectedList.dueDate.slice(0, 22) }}
+            <fa-icon [icon]="faCalendar"></fa-icon>
+            <span>{{ this.selectedList.dueDate.slice(0, 22) }}</span>
           </div>
         </div>
-        <button class="delete todo-submit" (click)="deleteTodo(i)">
+        <fa-icon [icon]="faTrash" class="delete" (click)="deleteTodo(i)">
           Remove
-        </button>
+        </fa-icon>
       </div>
     </div>
     <div class="add-task-container">

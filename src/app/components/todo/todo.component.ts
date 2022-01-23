@@ -8,10 +8,14 @@ import {
 } from '@angular/core';
 import { TodoList } from 'src/app/models/TodoList';
 import { ModalService } from 'src/app/services/modal.service';
-import { faEllipsisH } from '@fortawesome/free-solid-svg-icons';
-import { faTasks } from '@fortawesome/free-solid-svg-icons';
-import { faEdit } from '@fortawesome/free-solid-svg-icons';
-import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
+import {
+  faEllipsisH,
+  faTasks,
+  faEdit,
+  faPlusCircle,
+  faTrashAlt,
+  faCalendarAlt,
+} from '@fortawesome/free-solid-svg-icons';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
@@ -24,6 +28,8 @@ export class TodoComponent implements OnInit {
   faTasks = faTasks;
   faPlusCircle = faPlusCircle;
   faEdit = faEdit;
+  faTrash = faTrashAlt;
+  faCalendar = faCalendarAlt;
   addTaskForm: FormGroup;
 
   constructor(

@@ -1,22 +1,18 @@
+* {
+  color: white;
+}
+
 .cal-container {
   max-height: 500px;
   max-width: 500px;
 
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.726);
-  transition: 0.3s;
-
-  .month {
-    background-color: grey;
-  }
+  box-shadow: 0 4px 8px 0 rgb(12, 12, 12);
+  opacity: 0.75;
+  transition: all 356ms ease-in-out;
 }
 
 .cal-container:hover {
-  box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.726);
-}
-
-.cal-text {
-  color: black;
-  padding: 1rem;
+  opacity: 1;
 }
 
 .month-year {
@@ -25,10 +21,22 @@
   align-items: center;
   min-height: 25px;
   width: 100%;
-  background-color: grey;
+  background-color: #292929;
   .arrow-icon {
     width: 10%;
     text-align: center;
+    transition: all 356ms ease-in-out;
+
+    &:hover {
+      cursor: pointer;
+      transform: scale(1.25);
+      color: #3eb489;
+    }
+
+    &:active {
+      transition: none;
+      transform: scale(1);
+    }
   }
   p {
     width: 80%;
@@ -36,10 +44,6 @@
     color: white;
     padding: 1rem;
   }
-}
-
-.arrow-icon:hover {
-  cursor: pointer;
 }
 
 .days {
@@ -53,25 +57,43 @@
   display: flex;
   justify-content: center;
   align-items: center;
-}
+  transition: all 356ms ease-in-out;
 
-.day:hover {
-  cursor: pointer;
+  opacity: 0.75;
+
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.25);
+    opacity: 1;
+  }
 }
 
 .time {
   display: flex;
   justify-content: center;
   align-items: center;
-  border-top: 1px solid grey;
+  border-top: 1px solid #3eb489;
+  padding: 0.5rem;
+
+  h3 {
+    color: #3eb489;
+    margin-right: 0.25rem;
+  }
 
   .hour-menu,
   .minute-menu {
-    margin: 1rem;
-    min-height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 20px;
+    transition: all 356ms ease-in-out;
+    opacity: 0.75;
 
-    :hover {
+    &:hover {
       cursor: pointer;
+      transform: scale(1.25);
+      padding: 0 1rem;
+      opacity: 1;
     }
   }
 }
@@ -82,7 +104,7 @@
   align-items: center;
   min-height: 25px;
   width: 100%;
-  background-color: darkgrey;
+  background-color: #3eb489;
   p {
     color: white;
     padding: 1rem;
@@ -94,15 +116,23 @@
 }
 
 .selected {
-  background-color: grey;
+  background-color: #3eb489;
 }
 
 .scrollable-vertical-menu {
   display: flex;
   flex-direction: column;
   width: 50px;
-  height: 60px;
+  height: 50px;
   overflow-y: auto;
+  opacity: 0.75;
+  transform: scale(0.9);
+
+  li:hover {
+    cursor: pointer;
+    transform: scale(1.15);
+    opacity: 1;
+  }
 }
 
 .hidden {

@@ -56,17 +56,20 @@ export class CalendarComponent implements OnInit {
     this.populateDates();
     this.populateHours();
     this.populateMinutes();
-    this.toggleMenu('date-time-picker');
-    this.toggleMenu('hour-picker');
-    this.toggleMenu('minute-picker');
+    this.toggleMenu(['date-time-picker']);
+    this.toggleMenu(['hour-picker']);
+    this.toggleMenu(['minute-picker']);
   }
 
-  toggleMenu(elementID: string): void {
-    let elementToToggle = document.getElementById(elementID);
-    if (elementToToggle) {
-      if (elementToToggle.classList.contains('hidden')) {
-        this.renderer.removeClass(elementToToggle, 'hidden');
-      } else this.renderer.addClass(elementToToggle, 'hidden');
+  toggleMenu(elementIDs: string[]): void {
+    for (let i = 0; i < elementIDs.length; i++) {
+      let elementToToggle = document.getElementById(elementIDs[i]);
+
+      if (elementToToggle) {
+        if (elementToToggle.classList.contains('hidden')) {
+          this.renderer.removeClass(elementToToggle, 'hidden');
+        } else this.renderer.addClass(elementToToggle, 'hidden');
+      }
     }
   }
 
@@ -147,7 +150,7 @@ export class CalendarComponent implements OnInit {
 
       this.renderer.listen(hourElement, 'click', (event) => {
         this.hour = i;
-        this.toggleMenu('hour-picker');
+        this.toggleMenu(['selected-hour', 'hour-picker']);
         this.changeSelectedDate();
       });
     }
@@ -178,7 +181,7 @@ export class CalendarComponent implements OnInit {
 
       this.renderer.listen(minuteElement, 'click', (event) => {
         this.minute = i;
-        this.toggleMenu('minute-picker');
+        this.toggleMenu(['selected-minute', 'minute-picker']);
         this.changeSelectedDate();
       });
     }

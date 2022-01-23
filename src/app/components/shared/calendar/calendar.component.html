@@ -1,5 +1,5 @@
 <div class="cal-container">
-  <section class="selected-date" (click)="toggleMenu('date-time-picker')">
+  <section class="selected-date" (click)="toggleMenu(['date-time-picker'])">
     <p class="cal-text" id="prevDate">
       {{ this.selectedDate.toUTCString().slice(0, 22) }}
     </p>
@@ -24,16 +24,22 @@
     <section class="time">
       <h3>Due Time:</h3>
       <div class="hour-menu">
-        <h3 (click)="toggleMenu('hour-picker')">
+        <span
+          id="selected-hour"
+          (click)="toggleMenu(['selected-hour', 'hour-picker'])"
+        >
           {{ this.minTwoDigits(this.selectedHour) }}
-        </h3>
+        </span>
         <ul class="hours scrollable-vertical-menu" id="hour-picker"></ul>
       </div>
       :
       <div class="minute-menu">
-        <h3 (click)="toggleMenu('minute-picker')">
+        <span
+          id="selected-minute"
+          (click)="toggleMenu(['selected-minute', 'minute-picker'])"
+        >
           {{ this.minTwoDigits(this.selectedMinute) }}
-        </h3>
+        </span>
         <ul class="minutes scrollable-vertical-menu" id="minute-picker"></ul>
       </div>
     </section>

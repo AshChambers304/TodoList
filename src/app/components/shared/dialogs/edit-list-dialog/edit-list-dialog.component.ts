@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { TodoList } from 'src/app/models/TodoList';
 
 @Component({
@@ -10,7 +10,7 @@ import { TodoList } from 'src/app/models/TodoList';
 })
 export class EditListDialogComponent implements OnInit {
   editTitleForm: FormGroup;
-  faTrash = faTrash;
+  faTrash = faTrashAlt;
 
   constructor(private builder: FormBuilder) {
     this.editTitleForm = this.builder.group({
