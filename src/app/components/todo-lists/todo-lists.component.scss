@@ -2,6 +2,12 @@
   display: flex;
   overflow-x: auto;
   overflow-y: hidden;
+  transform: rotateX(180deg);
+}
+
+.todo-lists .list,
+.todo-lists .new-list {
+  transform: rotateX(180deg);
 }
 
 .list,

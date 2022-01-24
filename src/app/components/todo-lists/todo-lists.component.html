@@ -1,7 +1,7 @@
 <div class="todo-lists">
   <div *ngFor="let todoList of todoLists; let i = index" class="lists">
     <span class="list" (click)="setSelectedList(todoList); setListStyling(i)">
-      {{ todoList.title }}
+      <p>{{ todoList.title }}</p>
       <div class="active-list"></div>
     </span>
   </div>
