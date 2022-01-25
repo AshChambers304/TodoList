@@ -27,11 +27,20 @@
     <div class="todos">
       <div
         *ngFor="let selectedList of selectedList.todos; let i = index"
-        class="todo {{ selectedList.completed ? 'done' : '' }}"
+        class="todo"
       >
         <div class="todo-info">
-          <div class="content" (click)="toggleTodoDone(i)">
-            {{ selectedList.content }}
+          <div class="content-container">
+            <div class="checkbox" (click)="toggleTodoDone(i)">
+              <span class="{{ selectedList.completed ? 'done' : '' }}"
+                >&#10004;</span
+              >
+            </div>
+            <div
+              class="content {{ selectedList.completed ? 'done strike' : '' }}"
+            >
+              {{ selectedList.content }}
+            </div>
           </div>
           <div class="due-date">
             <fa-icon [icon]="faCalendar"></fa-icon>
