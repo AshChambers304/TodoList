@@ -6,9 +6,9 @@
       <p>Create or select a list to get started!</p>
     </div>
   </ng-container>
+
   <ng-container *ngIf="selectedList">
     <div class="heading">
-      <h1 class="title">{{ selectedList.title }}</h1>
       <fa-icon
         class="dot-menu"
         [icon]="faEllipsisH"
@@ -23,18 +23,33 @@
         <p>Click the add task icon below to get started!</p>
       </div>
     </ng-container>
+
     <div class="todos">
       <div
         *ngFor="let selectedList of selectedList.todos; let i = index"
-        class="todo {{ selectedList.completed ? 'done' : '' }}"
+        class="todo"
       >
-        <div class="content" (click)="toggleTodoDone(i)">
-          {{ selectedList.content }}
-          {{ selectedList.dueDate }}
+        <div class="todo-info">
+          <div class="content-container">
+            <div class="checkbox" (click)="toggleTodoDone(i)">
+              <span class="{{ selectedList.completed ? 'done' : '' }}"
+                >&#10004;</span
+              >
+            </div>
+            <div
+              class="content {{ selectedList.completed ? 'done strike' : '' }}"
+            >
+              {{ selectedList.content }}
+            </div>
+          </div>
+          <div class="due-date">
+            <fa-icon [icon]="faCalendar"></fa-icon>
+            <span>{{ this.selectedList.dueDate.slice(0, 22) }}</span>
+          </div>
         </div>
-        <button class="delete todo-submit" (click)="deleteTodo(i)">
+        <fa-icon [icon]="faTrash" class="delete" (click)="deleteTodo(i)">
           Remove
-        </button>
+        </fa-icon>
       </div>
     </div>
     <div class="add-task-container">
@@ -47,7 +62,7 @@
   </ng-container>
 </div>
 
-<app-modal id="edit-list-modal">
+<app-modal id="edit-list-modal" [elementToFocus]="'new-title'">
   <app-edit-list-dialog
     [selectedList]="selectedList"
     (listRenameEmitter)="handleListRenameEmitter($event)"
@@ -56,7 +71,7 @@
   ></app-edit-list-dialog>
 </app-modal>
 
-<app-modal id="add-task-modal">
+<app-modal id="add-task-modal" [elementToFocus]="'content-text'">
   <app-add-task-dialog
     (taskEmitter)="handleTaskEmitter($event)"
     (closeModalEmitter)="handleCloseModalEmitter($event)"

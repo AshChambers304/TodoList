@@ -26,4 +26,8 @@ export class AddListDialogComponent implements OnInit {
     this.listForm.setValue({ inputList: '' });
     this.closeModalEmitter.emit('new-list-modal');
   }
+
+  onCancel() {
+    this.closeModalEmitter.emit('new-list-modal');
+  }
 }

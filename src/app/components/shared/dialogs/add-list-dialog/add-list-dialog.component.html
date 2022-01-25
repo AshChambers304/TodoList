@@ -1,24 +1,36 @@
-<h2>New List</h2>
+<div class="dialog-title">
+  <h2>Create List</h2>
+</div>
 
-<p>Please enter a name for your new list.</p>
-<form [formGroup]="listForm">
+<form class="dialog-form" [formGroup]="listForm">
   <input
     type="text"
     name="inputList"
     placeholder="Enter List Title..."
-    class="list-input"
+    class="list-title"
+    id="new-list-content"
     [formControlName]="'inputList'"
     maxlength="100"
   />
+  <div class="buttons">
+    <button
+      type="button"
+      value="Cancel"
+      class="button cancel"
+      (click)="onCancel()"
+    >
+      Cancel
+    </button>
 
-  <button
-    type="submit"
-    value="Add List"
-    color="primary"
-    class="todo-submit"
-    [disabled]="listForm.invalid"
-    (click)="onSubmit()"
-  >
-    Add List
-  </button>
+    <button
+      type="submit"
+      value="Add List"
+      color="primary"
+      class="button submit"
+      [disabled]="listForm.invalid"
+      (click)="onSubmit()"
+    >
+      Confirm
+    </button>
+  </div>
 </form>

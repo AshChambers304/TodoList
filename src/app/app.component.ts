@@ -44,7 +44,11 @@ export class AppComponent implements OnInit {
     this.todoService.toggleTodoDone(id);
   }
 
-  handleTodoContentEmitter(todoContent: { todoContent: string; id: number }) {
+  handleTodoContentEmitter(todoContent: {
+    todoContent: string;
+    selectedDate: Date;
+    id: number;
+  }) {
     this.todoService.addTodo(todoContent);
   }
 }

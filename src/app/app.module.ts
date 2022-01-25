@@ -14,6 +14,7 @@ import { EditListDialogComponent } from './components/shared/dialogs/edit-list-d
 import { ModalModule } from './components/shared/modal/modal.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AddTaskDialogComponent } from './components/shared/dialogs/add-task-dialog/add-task-dialog.component';
+import { CalendarComponent } from './components/shared/calendar/calendar.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { AddTaskDialogComponent } from './components/shared/dialogs/add-task-dia
     AddListDialogComponent,
     EditListDialogComponent,
     AddTaskDialogComponent,
+    CalendarComponent,
   ],
   entryComponents: [AddListDialogComponent, EditListDialogComponent],
   imports: [

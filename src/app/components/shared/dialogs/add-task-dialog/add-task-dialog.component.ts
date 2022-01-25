@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
@@ -15,15 +15,31 @@ export class AddTaskDialogComponent implements OnInit {
     });
   }
 
-  @Output() taskEmitter: EventEmitter<string> = new EventEmitter<string>();
+  public selectedDate: Date = new Date();
+
+  @Output() taskEmitter: EventEmitter<{
+    content: string;
+    selectedDate: Date;
+  }> = new EventEmitter<{ content: string; selectedDate: Date }>();
   @Output() closeModalEmitter: EventEmitter<string> =
     new EventEmitter<string>();
 
   ngOnInit(): void {}
 
+  handleSelectedDateEmitter(newSelectedDate: Date) {
+    this.selectedDate = newSelectedDate;
+  }
+
   onSubmit(): void {
-    this.taskEmitter.emit(this.taskForm.get('taskContent')?.value);
+    this.taskEmitter.emit({
+      content: this.taskForm.get('taskContent')?.value,
+      selectedDate: this.selectedDate,
+    });
     this.taskForm.setValue({ taskContent: '' });
+    this.closeModalEmitter.emit('add-task-modal');
+  }
+
+  onCancel() {
     this.closeModalEmitter.emit('add-task-modal');
   }
 }

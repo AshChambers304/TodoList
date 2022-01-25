@@ -8,12 +8,12 @@ app-modal {
     z-index: 1000;
     min-height: 25vh;
     min-width: 25vw;
-    border-radius: 1.5rem;
     overflow: auto;
+    border-radius: 25px;
 
     .modal-content {
       background: rgb(48, 48, 48);
-      padding: 5rem;
+      border-radius: 25px;
     }
   }
 
@@ -28,5 +28,95 @@ app-modal {
     opacity: 0.75;
     z-index: 900;
     overflow: hidden;
+  }
+}
+
+.dialog-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  background-color: rgb(41, 41, 41);
+
+  .delete {
+    transition: all 356ms ease-in-out;
+    color: #e75353;
+    cursor: pointer;
+    opacity: 0.65;
+    transform: scale(1);
+    margin-right: 2rem;
+    font-size: 1.2rem;
+
+    &:hover {
+      transform: scale(1.1);
+      opacity: 1;
+    }
+  }
+
+  h2 {
+    padding: 2rem;
+    color: #3eb489;
+  }
+}
+
+input[type="text"] {
+  margin: 0 2rem;
+  padding: 1rem;
+  outline: none;
+  border: none;
+  min-height: 25px;
+  border-radius: 0.5rem;
+  background-color: rgb(39, 39, 39);
+  cursor: pointer;
+  color: white;
+}
+
+.dialog-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 2rem 0;
+
+  .buttons {
+    margin: 2rem;
+    display: flex;
+    justify-content: flex-end;
+
+    .button {
+      transition: all 356ms ease-in-out;
+      min-width: 100px;
+      padding: 1rem;
+      margin-left: 1rem;
+      border: none;
+      border-radius: 0.25rem;
+      font-weight: 600;
+      cursor: pointer;
+      color: #fff;
+    }
+    .submit {
+      background-color: #3eb489;
+      opacity: 0.65;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+
+    .cancel {
+      background-color: rgb(83, 83, 83);
+      opacity: 0.65;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+@media (max-width: 1200px) {
+  .dialog-form {
+    .buttons {
+      justify-content: center;
+    }
   }
 }

@@ -1,0 +1,47 @@
+<div class="cal-container">
+  <section class="selected-date" (click)="toggleMenu(['date-time-picker'])">
+    <p class="cal-text" id="prevDate">
+      {{ this.selectedDate.toUTCString().slice(0, 22) }}
+    </p>
+  </section>
+  <div id="date-time-picker">
+    <section class="month-year">
+      <fa-icon
+        class="arrow-icon"
+        [icon]="faArrowLeft"
+        (click)="prevMonthClicked()"
+      ></fa-icon>
+
+      <p class="cal-text">{{ months[month] }} {{ year }}</p>
+
+      <fa-icon
+        class="arrow-icon"
+        [icon]="faArrowRight"
+        (click)="nxtMonthClicked()"
+      ></fa-icon>
+    </section>
+    <section class="days"></section>
+    <section class="time">
+      <h3>Due Time:</h3>
+      <div class="hour-menu">
+        <span
+          id="selected-hour"
+          (click)="toggleMenu(['selected-hour', 'hour-picker'])"
+        >
+          {{ this.minTwoDigits(this.selectedHour) }}
+        </span>
+        <ul class="hours scrollable-vertical-menu" id="hour-picker"></ul>
+      </div>
+      :
+      <div class="minute-menu">
+        <span
+          id="selected-minute"
+          (click)="toggleMenu(['selected-minute', 'minute-picker'])"
+        >
+          {{ this.minTwoDigits(this.selectedMinute) }}
+        </span>
+        <ul class="minutes scrollable-vertical-menu" id="minute-picker"></ul>
+      </div>
+    </section>
+  </div>
+</div>
